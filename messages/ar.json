@@ -1,0 +1,19 @@
+{
+  "HomePage": {
+    "title": "مرحبا بالعالم!",
+    "description": "وصف صفحة الهبوط",
+    "UpBar": {
+      "login": "تسجيل الدخول",
+      "register": "إنشاء حساب",
+      "logout": "تسجيل الخروج",
+      "dashboard": "لوحة التحكم",
+      "home": "الرئيسية"
+    }
+  },
+  "Dashborad":{
+    "UpBar":{
+      "Leave" : "Leave",
+      "Home" : "Home"
+    }
+  }
+}

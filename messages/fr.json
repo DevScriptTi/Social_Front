@@ -1,0 +1,19 @@
+{
+  "HomePage": {
+    "title": "Bonjour le monde !",
+    "description": "Description de la page d'accueil",
+    "UpBar": {
+      "login": "Connexion",
+      "register": "S'inscrire",
+      "logout": "Se déconnecter",
+      "dashboard": "Tableau de bord",
+      "home": "Accueil"
+    }
+  },
+  "Dashborad":{
+    "UpBar":{
+      "Leave" : "Leave",
+      "Home" : "Home"
+    }
+  }
+}

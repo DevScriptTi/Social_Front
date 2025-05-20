@@ -1,0 +1,23 @@
+{
+  "HomePage": {
+    "title": "Social Housing Support",
+    "description": "Logment Social simplifies social housing applications in Algeria. Access affordable housing solutions with transparent tracking and real-time updates. Join thousands of Algerians who have found their dream homes through our platform.",
+    "UpBar": {
+      "login": "Login",
+      "register": "Register",
+      "home": "Home",
+      "dashboard": "Dashboard",
+      "logout": "Log Out"
+    }
+  },
+  "Dashboard": {
+    "UpBar": {
+      "Leave": "Leave",
+      "Home": "Home"
+    },
+    "NavBar": {
+      "Home": "Home",
+      "Committee": "Committees"
+    }
+  }
+}
