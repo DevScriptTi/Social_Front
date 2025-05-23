@@ -85,7 +85,6 @@ export default function Toast({
         </div>
     );
 }
-
 // Add this to your global CSS file
 const styles = `
 @keyframes slide-in {
@@ -103,3 +102,4 @@ const styles = `
     animation: slide-in 0.3s ease-out;
 }
 `;
+

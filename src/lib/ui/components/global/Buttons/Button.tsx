@@ -1,6 +1,5 @@
 "use client";
 import "@/app/globals.css";
-import React, { experimental_useEffectEvent } from "react";
 
 export default function Button({ children, click, disabled = false, mode, icon, type }: { children?: React.ReactNode, click?: () => void, disabled?: boolean, type?: "submit" | "reset" | "button" | undefined, mode?: "filled" | "outlined" | "text" | "icon" | "elevated", icon?: React.ReactNode }) {
   const baseClass = "h-10 w-fit px-4 flex items-center justify-center rounded-full text-label-large";

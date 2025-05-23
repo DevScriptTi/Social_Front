@@ -10,7 +10,7 @@ export async function createAdmin(adminData: CreateAdminRequest): Promise<Admin 
             `/admins`,
             adminData
         )
-        revalidatePath('/dashboard')
+        revalidatePath('/dashboard/admins')
         return data
     } catch (error: any) {
         if (error.response?.data) {

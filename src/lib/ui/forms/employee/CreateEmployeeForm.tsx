@@ -9,7 +9,6 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
-import { CreateEmployeeRequest } from "@/lib/server/types/employee/employee";
 import { Wilaya, getWilayas } from "@/lib/server/actions/employee/getWilayas";
 import { SimpleSelect } from "@/lib/ui/components/global/Inputs/SimpleSelect";
 

@@ -1,4 +1,3 @@
-import { getApplications } from "@/lib/server/actions/application/getApplications";
 import { DashContent, DashContenTitle, DashContentPaginationSkeleton, DashContentStatItemSkeleton, DashContentTableSkeleton } from "@/lib/ui/components/local/Dashboard/DashCrudContent";
 import ApplicationPagination from "@/lib/ui/components/local/Dashboard/Application/ApplicationPagination";
 import ApplicationsTable from "@/lib/ui/components/local/Dashboard/Application/ApplicationsTable";
@@ -11,7 +10,6 @@ interface PageProps {
 
 export default async function page({ searchParams }: PageProps) {
     const page = (await searchParams).page || "1";
-    const committees = await getApplications(parseInt(page));
     return (
         <DashContent>
             <DashContenTitle>Applications</DashContenTitle>

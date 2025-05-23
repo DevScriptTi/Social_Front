@@ -24,7 +24,7 @@ export default async function NavBar_() {
                 {await isAdmin() && (
                     <>
                         <NavItem link={`/${locale}/dashboard/admins`} icon={<UserCog size={18} />}>
-                            {t('Dashboard.NavBar.Home')}
+                            {t('Dashboard.NavBar.Admin')}
                         </NavItem>
                         <NavItem link={`/${locale}/dashboard/committees`} icon={<Building2 size={18} />}>
                             {t('Dashboard.NavBar.Committee')}

@@ -1,4 +1,3 @@
-import { getCommittees } from "@/lib/server/actions/committee/getCommittees";
 import Button from "@/lib/ui/components/global/Buttons/Button";
 import DashSection from "@/lib/ui/components/global/Section/Section";
 import CommitteePagination from "@/lib/ui/components/local/Dashboard/Committee/CommitteePagination";
@@ -15,7 +14,6 @@ interface PageProps {
 
 export default async function page({ searchParams }: PageProps) {
     const page = (await searchParams).page || "1";
-    const committees = await getCommittees(parseInt(page));
 
     return (
         <DashSection>

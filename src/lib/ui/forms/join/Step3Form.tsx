@@ -7,7 +7,9 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { SimpleSelect } from "../../components/global/Inputs/SimpleSelect";
-
+import { housing } from "@/lib/server/actions/join/applicant";
+import { CheckCircle, Loader2 } from "lucide-react";
+import Link from "next/link";
 const step3Schema = z.object({
     current_housing_type: z.enum([
         'non_residential_place',
@@ -23,17 +25,32 @@ const step3Schema = z.object({
 
 type Step3FormData = z.infer<typeof step3Schema>;
 
-export default function Step3Form() {
-    const router = useRouter();
-    const { register, handleSubmit, formState: { errors } } = useForm<Step3FormData>({
-        resolver: zodResolver(step3Schema)
+export default function Step3Form({ applicationResponse }: { applicationResponse: ApplicationResponse | { success: false } }) {
+    const application = applicationResponse.success === false ? null : applicationResponse.application;
+    const { register, handleSubmit, formState: { errors, isSubmitting, isSubmitted } } = useForm<Step3FormData>({
+        resolver: zodResolver(step3Schema),
+        defaultValues: application ? {
+            current_housing_type: application.housing.current_housing_type,
+            previously_benefited: application.housing.previously_benefited,
+            housing_area: application.housing.housing_area,
+            other_properties: application.housing.other_properties,
+        } : {}
     });
-    const onSubmit = (data: Step3FormData) => {
-        window.alert(JSON.stringify(data));
+    const onSubmit = async (data: Step3FormData) => {
+        await housing(data);
         // router.push('/join/step1');
     };
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6 w-full">
+            <div>
+                {
+                    isSubmitted &&
+                    <div className="flex items-center justify-center gap-2 my-2 text-green-700 dark:text-green-400">
+                        <CheckCircle size={24} />
+                        <p>Civil status submitted successfully</p>
+                    </div>
+                }
+            </div>
             <div className="flex gap-4">
                 <SimpleSelect
                     error={errors?.current_housing_type?.message}
@@ -68,7 +85,7 @@ export default function Step3Form() {
                     register={register}
                     placeholder="Enter housing area"
                     type="number"
-                    // step="0.01"
+                // step="0.01"
                 />
 
                 <Input
@@ -81,7 +98,17 @@ export default function Step3Form() {
                 />
             </div>
 
-            <Button type="submit" mode="filled">Submit</Button>
+            <div className=" flex gap-3">
+                {isSubmitting ?
+                    <Button icon={<Loader2 size={24} />} type="submit" mode="filled">Save</Button>
+                    :
+                    <Button type="submit" mode="filled">Save</Button>
+                }
+
+                <Link href="/join/step4">
+                    <Button mode="outlined">Next</Button>
+                </Link>
+            </div>
         </form>
     );
 }

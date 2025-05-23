@@ -6,11 +6,12 @@ import Button from "../../components/global/Buttons/Button";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { getNationalCard } from "@/lib/server/actions/join/NationalCardAction";
 
 const nationalCardSchema = z.object({
     national_card_id: z.string()
-        
-        
+
+
 });
 
 type NationalCardFormData = z.infer<typeof nationalCardSchema>;
@@ -20,11 +21,14 @@ export default function NnationalCardForm() {
     const { register, handleSubmit, formState: { errors } } = useForm<NationalCardFormData>({
         resolver: zodResolver(nationalCardSchema)
     });
-    const onSubmit = (data: NationalCardFormData) => {
-        router.push('/join/step1');
+    const onSubmit = async (data: NationalCardFormData) => {
+        const response = await getNationalCard({ national_card_id: data.national_card_id });
+        if (response.success) {
+            router.push('/join/step1');
+        }
     }
     return (
-        <form  
+        <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-4 w-72"
         >

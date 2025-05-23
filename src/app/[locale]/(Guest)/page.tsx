@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { Phone, Mail, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 import Button from '@/lib/ui/components/global/Buttons/Button';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default async function HomePage() {
   const t = await getTranslations('HomePage');
@@ -13,7 +14,7 @@ export default async function HomePage() {
         <p className='text-body-large text-on-surface dark:text-dark-on-surface'>{t('description')}</p>
         <div className='flex gap-4'>
           <Link href='/join'>
-            <Button mode='filled' >Join</Button>
+            <Button mode='outlined' >Join us</Button>
           </Link>
         </div>
         <div className="flex flex-col  gap-2 mt-4">
@@ -46,7 +47,7 @@ export default async function HomePage() {
         </div>
       </div>
       <div className='flex items-center justify-center w-1/2'>
-        <img src={'/landing1.jpg'} alt='landing-image' className='size-full object-cover' />
+        <Image src={'/landing1.jpg'} alt='landing-image' className='size-full object-cover' width={500} height={500} />
       </div>
     </LandingContent>
   );

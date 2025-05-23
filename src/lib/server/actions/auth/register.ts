@@ -2,8 +2,6 @@
 
 import { RegisterData, RegisterResponseError } from "../../types/auth/register/Register"
 import axios from "axios"
-import { createSession } from "../../tools/session"
-import { revalidatePath } from "next/cache"
 
 const axiosInstance = axios.create({
     baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,

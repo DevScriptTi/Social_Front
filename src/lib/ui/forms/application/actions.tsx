@@ -10,7 +10,6 @@ interface ApplicationActionsProps {
 }
 
 export default function ApplicationActions({ Application }: ApplicationActionsProps) {
-    const router = useRouter();
 
     const handleEdit = () => {
         // TODO: Implement edit functionality
@@ -36,7 +35,7 @@ export default function ApplicationActions({ Application }: ApplicationActionsPr
             >
                 <Trash2 size={16} />
             </button>
-            <Link href={`/dashboard/applications/${Application.id}`} className="text-primary dark:text-dark-primary">
+            <Link href={`/dashboard/applications/${Application.key}`} className="text-primary dark:text-dark-primary">
                 <Eye size={16} />
             </Link>
         </div>

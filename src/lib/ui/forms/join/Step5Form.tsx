@@ -29,7 +29,7 @@ export default function Step5Form() {
     const { register, handleSubmit, formState: { errors } } = useForm<Step5FormData>({
         resolver: zodResolver(step5Schema)
     });
-    const onSubmit = (data: Step5FormData) => {
+    const onSubmit = () => {
         router.push('/join/step1');
     };
     return (

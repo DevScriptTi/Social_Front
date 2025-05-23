@@ -1,4 +1,4 @@
-'use server'
+g'use server'
 
 import axiosInstance from '@/lib/server/tools/axios'
 

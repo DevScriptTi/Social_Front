@@ -1,4 +1,3 @@
-import { getEmployees } from "@/lib/server/actions/employee/getEmployees";
 import Button from "@/lib/ui/components/global/Buttons/Button";
 import { DashContent, DashContentAction, DashContenTitle, DashContentPaginationSkeleton, DashContentStatItemSkeleton, DashContentTableSkeleton } from "@/lib/ui/components/local/Dashboard/DashCrudContent";
 import EmployeePagination from "@/lib/ui/components/local/Dashboard/Employee/EmployeePagination";
@@ -14,7 +13,6 @@ interface PageProps {
 
 export default async function page({ searchParams }: PageProps) {
     const page = (await searchParams).page || "1";
-    const committees = await getEmployees(parseInt(page));
     return (
         <DashContent>
             <DashContenTitle>Employees</DashContenTitle>
