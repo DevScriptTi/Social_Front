@@ -9,11 +9,10 @@ import { z } from "zod";
 import Button from "@/lib/ui/components/global/Buttons/Button";
 import { register } from "@/lib/server/actions/auth/register";
 import { Loader2 } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
-
+import { useTranslations } from "next-intl";
 const FormSchema = z.object({
     email: z.string().email({
         message: "Please enter a valid email address.",
@@ -33,7 +32,6 @@ const FormSchema = z.object({
 });
 
 export default function RegisterForm() {
-    const router = useRouter();
     const locale = useLocale();
     const { handleSubmit, register: registerField, formState: { errors, isSubmitting, isSubmitSuccessful }, setError } = useForm<RegisterData>({
         resolver: zodResolver(FormSchema),
@@ -68,6 +66,7 @@ export default function RegisterForm() {
             console.error('Register error:', error);
         }
     }
+    const t = useTranslations('auth.register');
 
     return (
         <Form title="register now">
@@ -76,39 +75,44 @@ export default function RegisterForm() {
                     <div className="flex flex-col gap-2 py-4 items-center">
                         <div className="flex items-center gap-2  text-green-700 dark:text-dark-green-400">
                             <CheckCircle2 className="w-5 h-5" />
-                            <span>Registration successful!</span>
+                            <span>{t('success')}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <span className="text-on-surface dark:text-dark-on-surface">Login now</span>
+                            <span className="text-on-surface dark:text-dark-on-surface">{t('login')}</span>
                             <Link href={`/${locale}/login`} className="text-primary dark:text-dark-primary hover:underline">
-                                Login here
+                                {t('title')}
                             </Link>
                         </div>
                     </div>
                 )}
                 <Input<RegisterData>
                     label="email"
-                    placeholder="Enter your email"
+                    type="email"
+                    title={t('email')}
+                    placeholder={t('placeholder_email')}
                     register={registerField}
                     error={errors.email?.message}
                 />
                 <Input<RegisterData>
                     label="password"
-                    placeholder="Enter your password"
+                    title={t('password')}
+                    placeholder={t('placeholder_password')}
                     register={registerField}
                     type="password"
                     error={errors.password?.message}
                 />
                 <Input<RegisterData>
                     label="password_confirmation"
-                    placeholder="Confirm your password"
+                    title={t('password_confirmation')}
+                    placeholder={t('placeholder_password_confirmation')}
                     register={registerField}
                     type="password"
                     error={errors.password_confirmation?.message}
                 />
                 <Input<RegisterData>
                     label="key"
-                    placeholder="Enter your registration key"
+                    title={t('key')}
+                    placeholder={t('placeholder_key')}
                     register={registerField}
                     error={errors.key?.message}
                 />
@@ -118,12 +122,12 @@ export default function RegisterForm() {
                     icon={isSubmitting ? <Loader2 className="animate-spin" /> : undefined}
                     disabled={isSubmitting}
                 >
-                    {isSubmitting ? "Registering..." : "Register"}
+                    {isSubmitting ? t('registering') : t('register')}
                 </Button>
                 <div className="text-center text-sm">
-                    Already have an account?{" "}
+                    {t('already_have_account')}
                     <Link href={`/${locale}/login`} className="text-primary dark:text-dark-primary hover:underline">
-                        Login here
+                        {t('login')}
                     </Link>
                 </div>
             </FormSection>

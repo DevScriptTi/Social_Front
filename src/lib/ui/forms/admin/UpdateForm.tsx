@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check } from "lucide-react";
-
+import { useTranslations } from "next-intl";
 const updateAdminSchema = z.object({
     name: z.string()
         .min(1, "name is required")
@@ -49,26 +49,26 @@ export default function UpdateAdminForm({ admin }: UpdateAdminFormProps) {
             console.error('Error updating admin:', error);
         }
     };
-
+    const t = useTranslations('Dashboard.content.admins.update');
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 w-full max-w-md">
             {isSubmitSuccessful && (
                 <div className="flex items-center gap-2 p-4 bg-green-50 dark:bg-green-900/50 border border-green-200 dark:border-green-800 rounded-lg">
                     <Check className="w-4 h-4 text-green-600 dark:text-green-400" />
-                    <p className="font-medium text-green-800 dark:text-green-200">Admin updated successfully!</p>
+                    <p className="font-medium text-green-800 dark:text-green-200">{t('success')}</p>
                 </div>
             )}
             <Input
                 label="name"
-                title="Name"
-                placeholder="Enter name (First letter capital)"
+                title={t('name')}
+                placeholder={t('placeholder_name')}
                 error={errors.name?.message}
                 register={register}
             />
             <Input
                 label="last"
-                title="Last Name"
-                placeholder="Enter last name (First letter capital)"
+                title={t('last')}
+                placeholder={t('placeholder_last')}
                 error={errors.last?.message}
                 register={register}
             />
@@ -77,7 +77,7 @@ export default function UpdateAdminForm({ admin }: UpdateAdminFormProps) {
                 mode="filled"
                 disabled={isSubmitting}
             >
-                {isSubmitting ? "Updating..." : "Update Admin"}
+                {isSubmitting ? t('submitting') : t('update')}
             </Button>
         </form>
     );

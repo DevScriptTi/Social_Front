@@ -7,10 +7,18 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { getNationalCard } from "@/lib/server/actions/join/NationalCardAction";
-
+import { useTranslations } from "next-intl";
 const nationalCardSchema = z.object({
     national_card_id: z.string()
-
+        .min(8, {
+            message: "National card ID must be at least 8 characters long"
+        }
+        ),
+    confirm_national_card_id: z.string()
+        .min(8, {
+            message: "National card ID must be at least 8 characters long"
+        }
+        ),
 
 });
 
@@ -27,19 +35,29 @@ export default function NnationalCardForm() {
             router.push('/join/step1');
         }
     }
+    const t = useTranslations('join.nationalCard');
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-4 w-72"
         >
             <Input<NationalCardFormData>
-                error={errors?.national_card_id?.message}
-                title="National card ID"
                 label="national_card_id"
+                title={t('national_card_id')}
+                placeholder={t('placeholder_national_card_id')}
                 register={register}
-                placeholder="Enter Your National card ID"
+                type="text"
+                error={errors.national_card_id?.message}
             />
-            <Button type="submit" mode="filled">Submit</Button>
+            <Input<NationalCardFormData>
+                label="confirm_national_card_id"
+                title={t('confirm_national_card_id')}
+                placeholder={t('placeholder_confirm_national_card_id')}
+                register={register}
+                type="text"
+                error={errors.confirm_national_card_id?.message}
+            />
+            <Button type="submit" mode="filled">{t('submit')}</Button>
         </form>
     )
 }

@@ -1,14 +1,36 @@
 import { getApplicationView } from "@/lib/server/actions/join/applicant";
 import { ApplicationResponse } from "@/lib/server/types/join/applicationUpdate";
-import { DashContent, DashContenTitle } from "@/lib/ui/components/local/Dashboard/DashCrudContent";
+import Button from "@/lib/ui/components/global/Buttons/Button";
+import { DashContent } from "@/lib/ui/components/local/Dashboard/DashCrudContent";
+import { Pencil } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 
 export default async function applicationView({ params }: { params: { application: string } }) {
     const { application } = await params
+    const t = await getTranslations('Dashboard.content.applications.view');
     const applicationData: ApplicationResponse | { success: false } = await getApplicationView(application) as ApplicationResponse
     return (
         <DashContent>
-            <h1 className="text-headline-large font-bold text-primary-container  dark:text-dark-primary-container">Application {applicationData?.application?.key} </h1>
+            <h1 className="text-headline-large font-bold text-primary-container  dark:text-dark-primary-container">{t('title')} {applicationData?.application?.key} </h1>
+            <div
+                className="mt-4 flex gap-2"
+            >
+                <span
+                    className={`${applicationData?.application?.status === "pending " ? "text-yellow-500" : applicationData?.application?.status === "approved" ? "bg-green-500" : "bg-red-500"} text-white px-4 py-2 rounded-md`}
+                >
+                    {applicationData?.application?.status}
+                </span>
+                <Button mode="filled" icon={<Pencil size={24}  />}>
+                    {t('change_status')}
+                </Button>
+            </div>
+            <Line />
+            <div className="flex gap-4">
+                <span
+                    className="text-title-large text-on-surface-variant dark:text-dark-on-surface-variant"
+                >{t('grade')}: {applicationData?.application?.grade ?? t('n/a')} </span>
+            </div>
             <Line />
             <ApplicantInfo applicationData={applicationData} />
             <Line />
@@ -18,39 +40,40 @@ export default async function applicationView({ params }: { params: { applicatio
     )
 }
 
-function HousingProfessionalProperty({ applicationData }: { applicationData: ApplicationResponse }) {
+async function HousingProfessionalProperty({ applicationData }: { applicationData: ApplicationResponse }) {
+    const t = await getTranslations('Dashboard.content.applications.view');
     return (
         <>
 
             <div className="flex gap-6">
-                <InfoGroup title="Professional  Information">
+                <InfoGroup title={t('professional_information')}>
                     <InfoRow>
-                        <Info label={'Is employed'} value={applicationData?.application?.professional?.is_employed ? 'Yes' : 'No'} />
-                        <Info label={'Work Nature'} value={applicationData?.application?.professional?.work_nature ?? "N/A"} />
+                        <Info label={t('is_employed')} value={applicationData?.application?.professional?.is_employed ? 'Yes' : 'No'} />
+                        <Info label={t('work_nature')} value={applicationData?.application?.professional?.work_nature ?? "N/A"} />
                     </InfoRow>
                     <InfoRow>
-                        <Info label={'Current job'} value={applicationData?.application?.professional?.current_job ?? "N/A"} />
-                        <Info label={'Monthly income'} value={applicationData?.application?.professional?.monthly_income ?? "N/A"} />
-                    </InfoRow>
-                </InfoGroup>
-                <InfoGroup title="Property Information">
-                    <InfoRow>
-                        <Info label={'Current Housing Type'} value={applicationData?.application?.housing?.current_housing_type ?? "N/A"} />
-                        <Info label={'Previously Benefited'} value={applicationData?.application?.housing?.previously_benefited ? 'Yes' : 'No'} />
-                    </InfoRow>
-                    <InfoRow>
-                        <Info label={'Housing Area (m²)'} value={applicationData?.application?.housing?.housing_area ?? "N/A"} />
-                        <Info label={'Other Properties'} value={applicationData?.application?.housing?.other_properties ? 'Yes' : 'No'} />
+                        <Info label={t('current_job')} value={applicationData?.application?.professional?.current_job ?? "N/A"} />
+                        <Info label={t('monthly_income')} value={applicationData?.application?.professional?.monthly_income ?? "N/A"} />
                     </InfoRow>
                 </InfoGroup>
-                <InfoGroup title="Medical Condition Information">
+                <InfoGroup title={t('property_information')}>
                     <InfoRow>
-                        <Info label={'Chronic Illness or Disability'} value={applicationData?.application?.health?.chronic_illness_disability ?? "N/A"} />
-                        <Info label={'Family Member Illness'} value={applicationData?.application?.health?.family_member_illness ?? "N/A"} />
+                        <Info label={t('current_housing_type')} value={applicationData?.application?.housing?.current_housing_type ?? "N/A"} />
+                        <Info label={t('previously_benefited')} value={applicationData?.application?.housing?.previously_benefited ? 'Yes' : 'No'} />
                     </InfoRow>
                     <InfoRow>
-                        <Info label={'Relationship'} value={applicationData?.application?.health?.relationship ?? "N/A"} />
-                        <Info label={'Type'} value={applicationData?.application?.health?.type ?? "N/A"} />
+                        <Info label={t('housing_area')} value={applicationData?.application?.housing?.housing_area ?? "N/A"} />
+                        <Info label={t('other_properties')} value={applicationData?.application?.housing?.other_properties ? 'Yes' : 'No'} />
+                    </InfoRow>
+                </InfoGroup>
+                <InfoGroup title={t('medical_condition_information')}>
+                    <InfoRow>
+                        <Info label={t('chronic_illness_disability')} value={applicationData?.application?.health?.chronic_illness_disability ?? "N/A"} />
+                        <Info label={t('family_member_illness')} value={applicationData?.application?.health?.family_member_illness ?? "N/A"} />
+                    </InfoRow>
+                    <InfoRow>
+                        <Info label={t('relationship')} value={applicationData?.application?.health?.relationship ?? "N/A"} />
+                        <Info label={t('type')} value={applicationData?.application?.health?.type ?? "N/A"} />
                     </InfoRow>
                 </InfoGroup>
             </div>
@@ -59,47 +82,47 @@ function HousingProfessionalProperty({ applicationData }: { applicationData: App
     )
 }
 
-function ApplicantInfo({ applicationData }: { applicationData: ApplicationResponse }) {
-
+async function ApplicantInfo({ applicationData }: { applicationData: ApplicationResponse }) {
+    const t = await getTranslations('Dashboard.content.applications.view');
     return (
         <>
 
             <div className="flex gap-6">
                 <InfoGroup title="Applicant Information">
                     <InfoRow>
-                        <Info label={'name'} value={applicationData?.application?.applicant?.name} />
-                        <Info label={'last'} value={applicationData?.application?.applicant?.last} />
+                        <Info label={t('name')} value={applicationData?.application?.applicant?.name} />
+                        <Info label={t('last')} value={applicationData?.application?.applicant?.last} />
                     </InfoRow>
                     <InfoRow>
-                        <Info label={'Date of birth'} value={applicationData?.application?.applicant?.date_of_birth} />
-                        <Info label={'Committee'} value={applicationData?.application?.applicant?.committee_id.toString()} />
+                        <Info label={t('date_of_birth')} value={applicationData?.application?.applicant?.date_of_birth} />
+                        <Info label={t('committee')} value={applicationData?.application?.applicant?.committee_id.toString()} />
                     </InfoRow>
                     <InfoRow>
-                        <Info label={'Email'} value={applicationData?.application?.applicant?.email} />
-                        <Info label={'Phone'} value={applicationData?.application?.applicant?.phone} />
+                        <Info label={t('email')} value={applicationData?.application?.applicant?.email} />
+                        <Info label={t('phone')} value={applicationData?.application?.applicant?.phone} />
                     </InfoRow>
 
                     <InfoRow>
-                        <Info label={'Gander'} value={applicationData?.application?.applicant?.gender} />
-                        <Info label={'Status'} value={applicationData?.application?.applicant?.status} />
+                        <Info label={t('gander')} value={applicationData?.application?.applicant?.gender} />
+                        <Info label={t('status')} value={applicationData?.application?.applicant?.status} />
                     </InfoRow>
                 </InfoGroup>
                 {
                     applicationData?.application?.applicant?.status !== "single" && (
-                        <InfoGroup title="Applicant Wife Information">
+                        <InfoGroup title={t('applicant_wife_information')}>
                             <InfoRow>
-                                <Info label={'name'} value={applicationData?.application?.applicant?.wife?.name ?? "N/A"} />
-                                <Info label={'last'} value={applicationData?.application?.applicant?.wife?.last ?? "N/A"} />
+                                <Info label={t('wife_name')} value={applicationData?.application?.applicant?.wife?.name ?? t('n/a')} />
+                                <Info label={t('wife_last')} value={applicationData?.application?.applicant?.wife?.last ?? t('n/a')} />
                             </InfoRow>
                             <InfoRow>
-                                <Info label={'Date of birth'} value={applicationData?.application?.applicant?.wife?.date_of_birth ?? "N/A"} />
-                                <Info label={'Place of birth'} value={applicationData?.application?.applicant?.wife?.place_of_birth ?? "N/A"} />
+                                <Info label={t('wife_date_of_birth')} value={applicationData?.application?.applicant?.wife?.date_of_birth ?? t('n/a')} />
+                                <Info label={t('wife_place_of_birth')} value={applicationData?.application?.applicant?.wife?.place_of_birth ?? t('n/a')} />
                             </InfoRow>
                             <InfoRow>
-                                <Info label={'Residence Place'} value={applicationData?.application?.applicant?.wife?.residence_place ?? "N/A"} />
+                                <Info label={t('wife_residence_place')} value={applicationData?.application?.applicant?.wife?.residence_place ?? t('n/a')} />
                             </InfoRow>
                             <InfoRow>
-                                <Info label={'National ID Number'} value={applicationData?.application?.applicant?.wife?.national_id_number ?? "N/A"} />
+                                <Info label={t('wife_national_id_number')} value={applicationData?.application?.applicant?.wife?.national_id_number ?? t('n/a')} />
                             </InfoRow>
                         </InfoGroup>
                     )

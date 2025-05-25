@@ -11,7 +11,7 @@ export const Input = <T extends FieldValues>({
   type = "text",
   register 
 }: {
-  register: UseFormRegister<T>
+  register?: UseFormRegister<T>
   label?: Path<T>;
   title?: string;
   placeholder?: string;

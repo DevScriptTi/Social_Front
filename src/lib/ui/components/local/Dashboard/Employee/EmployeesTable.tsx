@@ -2,7 +2,7 @@ import { getEmployees } from "@/lib/server/actions/employee/getEmployees";
 import { DashContentTable, TableTd, TableTdMain, TableThead, TableTr } from "../DashCrudContent";
 import EmployeeActions from "@/lib/ui/forms/employee/actions";
 import CreateEmployeeKey from "@/lib/ui/forms/employee/createKey";
-
+import { getTranslations } from "next-intl/server";
 interface EmployeesTableProps {
     page: string;
 }
@@ -17,11 +17,11 @@ export default async function EmployeesTable({ page }: EmployeesTableProps) {
         }
 
         const Employees = response.data.data;
-
+        const t = await getTranslations('Dashboard.content.employees.table');
         return (
             <>
                 <DashContentTable>
-                    <TableThead list={['Username', 'Name', 'Last', 'Key', 'Email', 'Wilaya-Daira', 'committee', 'Applicants', 'Settings']} />
+                    <TableThead list={[t('username'), t('name'), t('last'), t('key'), t('email'), t('wilaya'), t('committee'), t('applicants'), t('settings') ]} />
                     <tbody>
                         {Employees.map((Employee) => (
                             <TableTr key={Employee.id}>

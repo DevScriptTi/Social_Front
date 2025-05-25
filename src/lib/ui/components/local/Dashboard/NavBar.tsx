@@ -34,14 +34,14 @@ export default async function NavBar_() {
                 {
                     await isCommittee() && (
                         <NavItem link={`/${locale}/dashboard/employees`} icon={<User2Icon size={18} />}>
-                            Employees
+                            {t('Dashboard.NavBar.Employee')}
                         </NavItem>
                     )
                 }
                 {
                     (await isCommittee() || await isEmployee()) && (
                         <NavItem link={`/${locale}/dashboard/applications`} icon={<File size={18} />}>
-                            Applications
+                            {t('Dashboard.NavBar.Application')}
                         </NavItem>
                     )
                 }

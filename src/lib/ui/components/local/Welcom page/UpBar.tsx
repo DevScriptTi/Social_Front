@@ -4,6 +4,9 @@ import NavBarGroup from "../../global/Navigations/NavBar/NavBarGroupd";
 import NavBarItem from "../../global/Navigations/NavBar/NavBarItem";
 import { isAuth } from "@/lib/server/tools/auth";
 import Logout from "./Logout";
+import Image from "next/image";
+import Mode from "../Mode";
+import Lang from "../Lang";
 
 export default async function UpBarGuest() {
     const auth = await isAuth()
@@ -38,10 +41,12 @@ export default async function UpBarGuest() {
                 <NavBarItem link={`/${locale}/`}>
                     {t('HomePage.UpBar.home')}
                 </NavBarItem>
+                <Mode />
+                <Lang />
             </NavBarGroup>
             <NavBarGroup>
                 <NavBarItem link={`/${locale}/login`}>
-                    Logo
+                    <Image src={'/logo.png'} alt='logo' className='w-10 h-10 rounded-full' width={500} height={500} />
                 </NavBarItem>
             </NavBarGroup>
         </UpBar>

@@ -4,6 +4,7 @@ import EmployeePagination from "@/lib/ui/components/local/Dashboard/Employee/Emp
 import EmployeesTable from "@/lib/ui/components/local/Dashboard/Employee/EmployeesTable";
 import EmployeeStat from "@/lib/ui/components/local/Dashboard/Employee/EmployeeStat";
 import { Plus } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { Suspense } from "react";
 
@@ -13,9 +14,10 @@ interface PageProps {
 
 export default async function page({ searchParams }: PageProps) {
     const page = (await searchParams).page || "1";
+    const t = await getTranslations('Dashboard.content.employees');
     return (
         <DashContent>
-            <DashContenTitle>Employees</DashContenTitle>
+            <DashContenTitle>{t('title')}</DashContenTitle>
             <Suspense fallback={<DashContentStatItemSkeleton />}>
                 <EmployeeStat />
             </Suspense>
@@ -33,11 +35,12 @@ export default async function page({ searchParams }: PageProps) {
 }
 
 
-function CreateEmployee() {
+async function CreateEmployee() {
+    const t = await getTranslations('Dashboard.content.employees');
     return (
         <Link href="/dashboard/employees/create">
             <Button mode="filled" icon={<Plus />}>
-                Create Employee
+                {t('create')}
             </Button>
         </Link>
     )

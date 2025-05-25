@@ -1,7 +1,7 @@
 import { getApplications } from "@/lib/server/actions/application/getApplications";
 import { DashContentTable, TableTd, TableTdMain, TableThead, TableTr } from "../DashCrudContent";
 import ApplicationActions from "@/lib/ui/forms/application/actions";
-
+import { getTranslations } from "next-intl/server";
 interface ApplicationsTableProps {
     page: string;
 }
@@ -19,11 +19,11 @@ export default async function ApplicationsTable({ page }: ApplicationsTableProps
         }
 
         const Applications = response.applications.data;
-
+        const t = await getTranslations('Dashboard.content.applications.table');
         return (
             <>
                 <DashContentTable>
-                    <TableThead list={['key', 'date', 'status','grade', 'name - last', 'date of birth', 'national id number', 'Settings']} />
+                    <TableThead list={[t('key'), t('date'), t('status'), t('grade'), t('name'), t('date_of_birth'), t('national_id_number'), t('settings')]} />
                     <tbody>
                         {Applications.map((Application) => (
                             <TableTr key={Application.id}>

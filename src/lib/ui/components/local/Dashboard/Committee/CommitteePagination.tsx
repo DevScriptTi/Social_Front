@@ -1,12 +1,14 @@
 import { CommitteeResponse } from "@/lib/server/types/committee/committee"
 import { DashContentPagination, DashContentPaginationItem } from "../DashCrudContent"
 import { getCommittees } from "@/lib/server/actions/committee/getCommittees";
+import { getTranslations } from "next-intl/server";
 
 interface CommitteePaginationProps {
     currentPage: number;
 }
 
 export default async function CommitteePagination({ currentPage }: CommitteePaginationProps) {
+    const t = await getTranslations('Dashboard.content.committees');
     try {
         const response = await getCommittees(currentPage);
 
@@ -21,7 +23,7 @@ export default async function CommitteePagination({ currentPage }: CommitteePagi
                     <DashContentPaginationItem 
                         href={`/dashboard/committees?page=${currentPage - 1}`}
                     >
-                        Previous
+                        {t('previous')}
                     </DashContentPaginationItem>
                 )}
 
@@ -42,7 +44,7 @@ export default async function CommitteePagination({ currentPage }: CommitteePagi
                     <DashContentPaginationItem 
                         href={`/dashboard/committees?page=${currentPage + 1}`}
                     >
-                        Next
+                        {t('next')}
                     </DashContentPaginationItem>
                 )}
             </DashContentPagination>

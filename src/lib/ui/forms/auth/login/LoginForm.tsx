@@ -11,7 +11,7 @@ import { login } from "@/lib/server/actions/auth/login";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
-
+import { useTranslations } from "next-intl";
 const FormSchema = z.object({
     email: z.string().email({
         message: "Username must be at least 2 characters.",
@@ -50,24 +50,27 @@ export default function LoginForm() {
         
 
     }
+    const t = useTranslations('auth.login');
     return (
-        <Form title="login now" >
+        <Form title={t('title')}>
             <FormSection onSubmit={handleSubmit(onSubmit)}>
                 <Input<LoginData>
                     label="email"
-                    placeholder="Enter your email"
+                    title={t('email')}
+                    placeholder={t('placeholder_email')}
                     register={register}
                     error={errors.email?.message}
                 />
                 <Input<LoginData>
                     label="password"
-                    placeholder="Enter your password"
+                    title={t('password')}
+                    placeholder={t('placeholder_password')}
                     register={register}
                     type="password"
                     error={errors.password?.message}
                 />
                 <Button type="submit" mode="filled" icon={isSubmitting || isSubmitSuccessful? <Loader2 className="animate-spin" /> : undefined} disabled={isSubmitting}>
-                    {isSubmitting ? "Submitting..." : "Submit"}
+                    {isSubmitting ? t('submitting') : t('submit')}
                 </Button>
             </FormSection>
         </Form>

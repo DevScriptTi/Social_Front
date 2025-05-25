@@ -1,9 +1,8 @@
 import { DashContentTable, TableTd, TableTdMain, TableThead, TableTr } from "../DashCrudContent";
 import CommitteeActions from "@/lib/ui/forms/committee/actions";
 import CreateCommitteeKey from "@/lib/ui/forms/committee/createKey";
-import { Committee } from "@/lib/server/types/committee/committee";
 import { getCommittees } from "@/lib/server/actions/committee/getCommittees";
-
+import { getTranslations } from "next-intl/server";
 interface CommitteesTableProps {
     page: string;
 }
@@ -18,11 +17,12 @@ export default async function CommitteesTable({ page }: CommitteesTableProps) {
         }
 
         const committees = response.data.data;
+        const t = await getTranslations('Dashboard.content.committees.table');
 
         return (
             <>
                 <DashContentTable>
-                    <TableThead list={['Username', 'Name', 'Last', 'Key', 'Email', 'Wilaya', 'Employees', 'Applicants', 'Settings']} />
+                    <TableThead list={[t('username'), t('name'), t('last'), t('key'), t('email'), t('wilaya'), t('employees'), t('applicants'), t('settings')]} />
                     <tbody>
                         {committees.map((committee) => (
                             <TableTr key={committee.id}>

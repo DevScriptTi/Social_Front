@@ -6,6 +6,7 @@ import CommitteeStat from "@/lib/ui/components/local/Dashboard/Committee/Committ
 import { DashContentAction, DashContenTitle, DashContentPaginationSkeleton, DashContentStatItemSkeleton, DashContentTableSkeleton } from "@/lib/ui/components/local/Dashboard/DashCrudContent";
 import { Plus } from "lucide-react";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
 
 interface PageProps {
@@ -14,10 +15,10 @@ interface PageProps {
 
 export default async function page({ searchParams }: PageProps) {
     const page = (await searchParams).page || "1";
-
+    const t = await getTranslations('Dashboard.content.committees');            
     return (
         <DashSection>
-            <DashContenTitle>Committees</DashContenTitle>
+            <DashContenTitle>{t('title')}</DashContenTitle>
             <Suspense fallback={<DashContentStatItemSkeleton />}>
                 <CommitteeStat />
             </Suspense>
@@ -34,11 +35,12 @@ export default async function page({ searchParams }: PageProps) {
     )
 }
 
-function CreateCommittee() {
+async function CreateCommittee() {
+    const t = await getTranslations('Dashboard.content.committees');
     return (
         <Link href="/dashboard/committees/create">
             <Button mode="filled" icon={<Plus />}>
-                Create Committee
+                {t('create')}
             </Button>
         </Link>
     )

@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { Wilaya, getWilayas } from "@/lib/server/actions/employee/getWilayas";
 import { SimpleSelect } from "@/lib/ui/components/global/Inputs/SimpleSelect";
-
+import { useTranslations } from "next-intl";
 const createEmployeeSchema = z.object({
     name: z.string()
         .min(1, "Name is required")
@@ -42,7 +42,6 @@ export default function CreateEmployeeForm() {
         handleSubmit,
         formState: { errors, isSubmitting, isSubmitSuccessful },
         setValue,
-        watch,
         reset,
     } = useForm<CreateEmployeeFormData>({
         resolver: zodResolver(createEmployeeSchema),
@@ -84,42 +83,43 @@ export default function CreateEmployeeForm() {
             console.error('Error creating employee:', error);
         }
     };
-
+    const t = useTranslations('Dashboard.content.employees.createEmployee');
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 w-full max-w-md">
             {isSubmitSuccessful && (
                 <div className="flex items-center gap-2 text-green-600 dark:text-green-400 animate-fade-in">
                     <CheckCircle2 size={20} />
-                    <span>Employee created successfully!</span>
+                    <span>{t('success')}</span>
                 </div>
             )}
             <Input
-                label="name"
-                title="Name"
-                placeholder="Enter name (First letter capital)"
+                label="name"    
+                title={t('name')}
+                placeholder={t('placeholder_name')}
                 error={errors.name?.message}
                 register={register}
             />
             <Input
                 label="last"
-                title="Last Name"
-                placeholder="Enter last name (First letter capital)"
+                title={t('last')}
+                placeholder={t('placeholder_last')}
                 error={errors.last?.message}
                 register={register}
             />
             <Input
                 label="date_of_birth"
-                title="Date of Birth"
+                title={t('date_of_birth')}
+                
                 type="date"
                 error={errors.date_of_birth?.message}
                 register={register}
             />
             <SimpleSelect
                 label="wilaya"
-                title="Wilaya"
+                title={t('wilaya')}
                 onChange={(e) => handleWilayaChange(e.target.value)}
             >
-                <option value="">Select a wilaya</option>
+                <option value="">{t('select_wilaya')}</option>
                 {wilayas.map((wilaya) => (
                     <option key={wilaya.id} value={wilaya.id}>
                         {wilaya.name}
@@ -133,7 +133,7 @@ export default function CreateEmployeeForm() {
                 register={register("daira_id")}
                 disabled={!selectedWilaya}
             >
-                <option value="">Select a daira</option>
+                <option value="">{t('select_daira')}</option>
                 {selectedWilaya?.dairas.map((daira) => (
                     <option key={daira.id} value={daira.id}>
                         {daira.name}
@@ -145,7 +145,7 @@ export default function CreateEmployeeForm() {
                 mode="filled"
                 disabled={isSubmitting}
             >
-                {isSubmitting ? "Creating..." : "Create Employee"}
+                {isSubmitting ? t('submitting') : t('submit')}
             </Button>
         </form>
     );

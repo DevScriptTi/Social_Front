@@ -9,8 +9,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { CheckCircle2 } from "lucide-react";
-import { CreateAdminRequest } from "@/lib/server/types/admin/admin";
-
+import { useTranslations } from "next-intl";
 const createAdminSchema = z.object({
     name: z.string()
         .min(1, "Name is required")
@@ -30,7 +29,6 @@ export default function CreateAdminForm() {
         register,
         handleSubmit,
         formState: { errors, isSubmitting, isSubmitSuccessful },
-        reset,
     } = useForm<CreateAdminFormData>({
         resolver: zodResolver(createAdminSchema),
     });
@@ -52,26 +50,28 @@ export default function CreateAdminForm() {
             console.error('Error creating admin:', error);
         }
     };
+    const t = useTranslations('Dashboard.content.admins.createAdmin');
+
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 w-full max-w-md">
             {isSubmitSuccessful && (
                 <div className="flex items-center gap-2 text-green-600 dark:text-green-400 animate-fade-in">
                     <CheckCircle2 size={20} />
-                    <span>Admin created successfully!</span>
+                    <span>{t('success')}</span>
                 </div>
             )}
             <Input
                 label="name"
-                title="Name"
-                placeholder="Enter name (First letter capital)"
+                title={t('name')}
+                placeholder={t('placeholder_name')}
                 error={errors.name?.message}
                 register={register}
             />
             <Input
                 label="last"
-                title="Last Name"
-                placeholder="Enter last name (First letter capital)"
+                title={t('last')}
+                placeholder={t('placeholder_last')}
                 error={errors.last?.message}
                 register={register}
             />
@@ -80,7 +80,7 @@ export default function CreateAdminForm() {
                 mode="filled"
                 disabled={isSubmitting}
             >
-                {isSubmitting ? "Creating..." : "Create Admin"}
+                {isSubmitting ? t('submitting') : t('create')}
             </Button>
         </form>
     );

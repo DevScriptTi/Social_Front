@@ -11,7 +11,7 @@ import { ApplicationResponse } from "@/lib/server/types/join/applicationUpdate";
 import { health } from "@/lib/server/actions/join/applicant";
 import { CheckCircle, Loader2 } from "lucide-react";
 import Link from "next/link";
-
+import { useTranslations } from "next-intl";    
 const step4Schema = z.object({
     chronic_illness_disability: z.enum(['yes', 'no'], { required_error: 'This field is required' }),
     type: z.string().optional(),
@@ -41,6 +41,7 @@ export default function Step4Form({ applicationResponse }: { applicationResponse
         });
         // router.push('/join/step1');
     };
+    const t = useTranslations('join.step4');
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6 w-full">
             <div>
@@ -48,30 +49,30 @@ export default function Step4Form({ applicationResponse }: { applicationResponse
                     isSubmitted &&
                     <div className="flex items-center justify-center gap-2 my-2 text-green-700 dark:text-green-400">
                         <CheckCircle size={24} />
-                        <p>Civil status submitted successfully</p>
+                        <p>{t('success')}</p>
                     </div>
                 }
             </div>
             <div className="flex gap-4">    
                 <SimpleSelect
                     error={errors?.chronic_illness_disability?.message}
-                    title="Chronic Illness or Disability"
+                    title={t('chronic_illness_disability')}
                     label="chronic_illness_disability"
                     register={register("chronic_illness_disability")}
                 >
-                    <option value="">Select</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
+                    <option value="">{t('select')}</option>
+                    <option value="yes">{t('yes')}</option>
+                    <option value="no">{t('no')}</option>
                 </SimpleSelect>
                 <SimpleSelect
                     error={errors?.family_member_illness?.message}
-                    title="Family Member Illness"
+                    title={t('family_member_illness')}
                     label="family_member_illness"
                     register={register("family_member_illness")}
                 >
-                    <option value="">Select</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
+                    <option value="">{t('select')}</option>
+                    <option value="yes">{t('yes')}</option>
+                    <option value="no">{t('no')}</option>
                 </SimpleSelect>
 
             </div>
@@ -79,29 +80,29 @@ export default function Step4Form({ applicationResponse }: { applicationResponse
 
                 <Input
                     error={errors?.relationship?.message}
-                    title="Relationship (if any)"
+                    title={t('relationship')}
                     label="relationship"
                     register={register}
-                    placeholder="Specify relationship"
+                    placeholder={t('placeholder_relationship')}
                     type="text"
                 />
                 <Input
                     error={errors?.type?.message}
-                    title="Type (if any)"
+                    title={t('type')}
                     label="type"
                     register={register}
-                    placeholder="Specify type of illness/disability"
+                    placeholder={t('placeholder_type')}
                     type="text"
                 />
             </div>
             <div className=" flex gap-3">
                 {isSubmitting ?
-                    <Button icon={<Loader2 size={24} />} type="submit" mode="filled">Save</Button>
+                    <Button icon={<Loader2 size={24} />} type="submit" mode="filled">{t('save')}</Button>
                     :
-                    <Button type="submit" mode="filled">Save</Button>
+                    <Button type="submit" mode="filled">{t('save')}</Button>
                 }
                 <Link href="/join/step5">
-                    <Button mode="outlined">Next</Button>
+                    <Button mode="outlined">{t('next')}</Button>
                 </Link>
 
             </div>

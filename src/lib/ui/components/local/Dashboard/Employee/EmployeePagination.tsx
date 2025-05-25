@@ -1,7 +1,7 @@
 import { EmployeeResponse } from "@/lib/server/types/employee/employee"
 import { DashContentPagination, DashContentPaginationItem } from "../DashCrudContent"
 import { getEmployees } from "@/lib/server/actions/employee/getEmployees";
-
+import { getTranslations } from "next-intl/server";
 interface EmployeePaginationProps {
     currentPage: number;
 }
@@ -9,7 +9,7 @@ interface EmployeePaginationProps {
 export default async function EmployeePagination({ currentPage }: EmployeePaginationProps) {
     try {
         const response = await getEmployees(currentPage);
-
+        const t = await getTranslations('Dashboard.content.employees');
         if (!response || !response.data || !response.data.links) {
             return null;
         }
@@ -21,7 +21,7 @@ export default async function EmployeePagination({ currentPage }: EmployeePagina
                     <DashContentPaginationItem 
                         href={`/dashboard/employees?page=${currentPage - 1}`}
                     >
-                        Previous
+                        {t('previous')} 
                     </DashContentPaginationItem>
                 )}
 
@@ -42,7 +42,7 @@ export default async function EmployeePagination({ currentPage }: EmployeePagina
                     <DashContentPaginationItem 
                         href={`/dashboard/employees?page=${currentPage + 1}`}
                     >
-                        Next
+                        {t('next')}
                     </DashContentPaginationItem>
                 )}
             </DashContentPagination>

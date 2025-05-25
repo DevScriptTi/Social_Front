@@ -1,19 +1,384 @@
 {
   "HomePage": {
-    "title": "مرحبا بالعالم!",
-    "description": "وصف صفحة الهبوط",
+    "title": "دعم السكن الاجتماعي",
+    "description": "يُبسّط Logment Social طلبات السكن الاجتماعي في الجزائر. الوصول إلى حلول سكنية ميسورة مع تتبع شفاف وتحديثات في الوقت الحقيقي. انضم إلى آلاف الجزائريين الذين وجدوا منازل أحلامهم من خلال منصتنا.",
+    "join": "انضم إلينا",
     "UpBar": {
       "login": "تسجيل الدخول",
-      "register": "إنشاء حساب",
-      "logout": "تسجيل الخروج",
+      "register": "التسجيل",
+      "home": "الرئيسية",
       "dashboard": "لوحة التحكم",
-      "home": "الرئيسية"
+      "logout": "تسجيل الخروج",
+      "lang": {
+        "ar": "العربية",
+        "en": "الانجليزية",
+        "fr": "الفرنسية"
+      }
+    },
+    "JoinNavBar": {
+      "step1": "الحالة المدنية",
+      "step2": "الوضع المهني",
+      "step3": "الملكية",
+      "step4": "الحالة الطبية",
+      "step5": "تحميل الوثائق"
     }
   },
-  "Dashborad":{
-    "UpBar":{
-      "Leave" : "Leave",
-      "Home" : "Home"
+  "join": {
+    "joinUpBar": {
+      "step1": "الحالة المدنية",
+      "step2": "الوضع المهني",
+      "step3": "الملكية",
+      "step4": "الحالة الطبية",
+      "step5": "تحميل الوثائق"
+    },
+    "step1": {
+      "title": "الحالة المدنية",
+      "name": "الاسم",
+      "placeholder_name": "أدخل اسمك",
+      "last": "اللقب",
+      "placeholder_last": "أدخل لقبك",
+      "date_of_birth": "تاريخ الميلاد",
+      "placeholder_date_of_birth": "أدخل تاريخ ميلادك",
+      "wilaya": "الولاية",
+      "placeholder_wilaya": "أدخل ولايتك",
+      "phone": "الهاتف",
+      "placeholder_phone": "أدخل رقم هاتفك",
+      "email": "البريد الإلكتروني",
+      "placeholder_email": "أدخل بريدك الإلكتروني",
+      "gender": "الجنس",
+      "male": "ذكر",
+      "female": "أنثى",
+      "placeholder_gender": "أدخل جنسك",
+      "status": "الحالة الاجتماعية",
+      "single": "أعزب",
+      "married": "متزوج",
+      "divorced": "مطلق",
+      "widowed": "أرمل",
+      "placeholder_status": "أدخل حالتك الاجتماعية",
+      "wife_information": "معلومات الزوجة",
+      "wife": {
+        "name": "الاسم",
+        "placeholder_name": "أدخل اسمها",
+        "last": "اللقب",
+        "placeholder_last": "أدخل لقبها",
+        "date_of_birth": "تاريخ الميلاد",
+        "placeholder_date_of_birth": "أدخل تاريخ ميلادها",
+        "place_of_birth": "مكان الميلاد",
+        "placeholder_place_of_birth": "أدخل مكان ميلادها",
+        "national_id_number": "رقم التعريف الوطني",
+        "placeholder_national_id_number": "أدخل رقم تعريفها الوطني",
+        "residence_place": "مكان الإقامة",
+        "placeholder_residence_place": "أدخل مكان إقامتها"
+      },
+      "save": "حفظ",
+      "next": "التالي",
+      "success": "تم تقديم الحالة المدنية بنجاح"
+    },
+    "step2": {
+      "title": "الوضع المهني",
+      "is_employed": "هل تعمل؟",
+      "yes": "نعم",
+      "no": "لا",
+      "work_nature": "طبيعة العمل",
+      "public_sector": "القطاع العام",
+      "private_sector": "القطاع الخاص",
+      "unstable": "غير مستقر",
+      "current_job": "الوظيفة الحالية",
+      "placeholder_current_job": "أدخل وظيفتك الحالية",
+      "monthly_income": "الدخل الشهري",
+      "placeholder_monthly_income": "أدخل دخلك الشهري",
+      "save": "حفظ",
+      "next": "التالي",
+      "success": "تم تقديم الوضع المهني بنجاح"
+    },
+    "step3": {
+      "title": "الملكية",
+      "current_housing_type": "نوع السكن الحالي",
+      "select_housing_type": "اختر نوع السكن",
+      "non_residential_place": "مكان غير سكني",
+      "collapsing_communal": "سكن جماعي متهالك",
+      "collapsing_private": "سكن خاص متهالك",
+      "with_relatives_or_rented": "مع الأقارب أو مستأجر",
+      "functional_housing": "سكن وظيفي",
+      "previously_benefited": "هل استفدت سابقًا؟",
+      "select": "اختر",
+      "yes": "نعم",
+      "no": "لا",
+      "housing_area": "مساحة السكن (م²)",
+      "placeholder_housing_area": "أدخل مساحة سكنك",
+      "other_properties": "ممتلكات أخرى",
+      "placeholder_other_properties": "أدخل ممتلكاتك الأخرى",
+      "save": "حفظ",
+      "next": "التالي",
+      "success": "تم تقديم معلومات الملكية بنجاح"
+    },
+    "step4": {
+      "title": "الحالة الطبية",
+      "chronic_illness_disability": "مرض مزمن أو إعاقة",
+      "family_member_illness": "مرض أحد أفراد العائلة",
+      "relationship": "العلاقة (إن وجدت)",
+      "placeholder_relationship": "أدخل العلاقة",
+      "type": "النوع (إن وجد)",
+      "placeholder_type": "أدخل النوع",
+      "select": "اختر",
+      "yes": "نعم",
+      "no": "لا",
+      "save": "حفظ",
+      "next": "التالي",
+      "success": "تم تقديم الحالة الطبية بنجاح"
+    },
+    "step5": {
+      "title": "تحميل الوثائق",
+      "birth_certificate": "شهادة الميلاد",
+      "spouse_birth_certificate": "شهادة ميلاد الزوج/الزوجة",
+      "family_individual_certificate": "شهادة عائلية فردية",
+      "applicant_national_id": "بطاقة التعريف الوطنية للمتقدم",
+      "spouse_national_id": "بطاقة التعريف الوطنية للزوج/الزوجة",
+      "residence_certificate": "شهادة الإقامة",
+      "employment_unemployment_certificate": "شهادة العمل/البطالة",
+      "spouse_employment_certificate": "شهادة عمل الزوج/الزوجة",
+      "spouse_salary_certificate": "شهادة راتب الزوج/الزوجة",
+      "applicant_salary_certificate": "شهادة راتب المتقدم",
+      "non_real_estate_ownership_certificate": "شهادة عدم امتلاك عقار",
+      "medical_certificate": "شهادة طبية",
+      "death_divorce_certificate": "شهادة وفاة/طلاق",
+      "save": "حفظ",
+      "next": "التالي",
+      "success": "تم تحميل الوثائق بنجاح"
+    },
+    "nationalCard": {
+      "national_card_id": "رقم بطاقة التعريف الوطنية",
+      "placeholder_national_card_id": "أدخل رقم بطاقة التعريف الوطنية",
+      "confirm_national_card_id": "تأكيد رقم بطاقة التعريف الوطنية",
+      "placeholder_confirm_national_card_id": "أكد رقم بطاقة التعريف الوطنية",
+      "submit": "إرسال"
+    }
+  },
+  "auth": {
+    "register": {
+      "title": "التسجيل",
+      "email": "البريد الإلكتروني",
+      "placeholder_email": "أدخل بريدك الإلكتروني",
+      "password": "كلمة المرور",
+      "placeholder_password": "أدخل كلمة المرور",
+      "password_confirmation": "تأكيد كلمة المرور",
+      "placeholder_password_confirmation": "أكد كلمة المرور",
+      "key": "رمز التسجيل",
+      "placeholder_key": "أدخل رمز التسجيل",
+      "already_have_account": "هل لديك حساب بالفعل؟",
+      "registering": "جاري التسجيل...",
+      "register": "التسجيل",
+      "login": "تسجيل الدخول",
+      "success": "تم التسجيل بنجاح!",
+      "error": "فشل في التسجيل!",
+      "error_email": "البريد الإلكتروني موجود بالفعل!",
+      "error_password": "يجب أن تكون كلمة المرور 8 أحرف على الأقل!",
+      "error_password_confirmation": "كلمتا المرور غير متطابقتين!",
+      "error_key": "رمز التسجيل مطلوب!"
+    },
+    "login": {
+      "title": "تسجيل الدخول",
+      "email": "البريد الإلكتروني",
+      "placeholder_email": "أدخل بريدك الإلكتروني",
+      "password": "كلمة المرور",
+      "placeholder_password": "أدخل كلمة المرور",
+      "submit": "إرسال",
+      "submitting": "جاري الإرسال...",
+      "success": "تم تسجيل الدخول بنجاح!",
+      "error": "فشل في تسجيل الدخول!",
+      "error_email": "البريد الإلكتروني أو كلمة المرور غير صحيحة!",
+      "error_password": "البريد الإلكتروني أو كلمة المرور غير صحيحة!"
+    }
+  },
+  "Dashboard": {
+    "UpBar": {
+      "Leave": "الخروج",
+      "Home": "الرئيسية"
+    },
+    "NavBar": {
+      "Home": "الرئيسية",
+      "Committee": "اللجان",
+      "Admin": "المسؤولون",
+      "Employee": "الموظفون",
+      "Application": "الطلبات"
+    },
+    "content": {
+      "admins": {
+        "title": "المسؤولون",
+        "create": "إنشاء مسؤول",
+        "stat": {
+          "title": "المسؤولون",
+          "value": "المسؤولون"
+        },
+        "table": {
+          "username": "اسم المستخدم",
+          "key": "الرمز",
+          "name": "الاسم",
+          "last": "اللقب",
+          "email": "البريد الإلكتروني",
+          "settings": "الإعدادات"
+        },
+        "update": {
+          "title": "تعديل المسؤول",
+          "name": "الاسم",
+          "placeholder_name": "أدخل الاسم",
+          "last": "اللقب",
+          "placeholder_last": "أدخل اللقب",
+          "update": "تحديث المسؤول",
+          "submitting": "جاري الإرسال...",
+          "success": "تم تحديث المسؤول بنجاح!"
+        },
+        "createAdmin": {
+          "title": "إنشاء مسؤول",
+          "name": "الاسم",
+          "placeholder_name": "أدخل الاسم",
+          "last": "اللقب",
+          "placeholder_last": "أدخل اللقب",
+          "email": "البريد الإلكتروني",
+          "placeholder_email": "أدخل البريد الإلكتروني",
+          "username": "اسم المستخدم",
+          "placeholder_username": "أدخل اسم المستخدم",
+          "password": "كلمة المرور (اتركها فارغة إن لم ترغب في التغيير)",
+          "placeholder_password": "أدخل كلمة المرور",
+          "submit": "تحديث",
+          "success": "تم تحديث معلومات المسؤول بنجاح"
+        },
+        "createForm": {
+          "title": "إنشاء مسؤول جديد",
+          "name": "الاسم",
+          "placeholder_name": "أدخل الاسم",
+          "last": "اللقب",
+          "placeholder_last": "أدخل اللقب",
+          "email": "البريد الإلكتروني",
+          "placeholder_email": "أدخل البريد الإلكتروني",
+          "username": "اسم المستخدم",
+          "placeholder_username": "أدخل اسم المستخدم",
+          "password": "كلمة المرور",
+          "placeholder_password": "أدخل كلمة المرور",
+          "submit": "إنشاء",
+          "success": "تم إنشاء المسؤول بنجاح"
+        }
+      },
+      "committee": {
+        "title": "اللجان",
+        "create": "إنشاء لجنة",
+        "stat": {
+          "title": "اللجان",
+          "value": "اللجان"
+        },
+        "table": {
+          "name": "الاسم",
+          "type": "النوع",
+          "members_count": "عدد الأعضاء",
+          "settings": "الإعدادات"
+        },
+        "update": {
+          "title": "تعديل اللجنة",
+          "name": "الاسم",
+          "placeholder_name": "أدخل اسم اللجنة",
+          "type": "نوع اللجنة",
+          "placeholder_type": "أدخل نوع اللجنة",
+          "submit": "تحديث",
+          "success": "تم تحديث اللجنة بنجاح"
+        },
+        "createForm": {
+          "title": "إنشاء لجنة جديدة",
+          "name": "الاسم",
+          "placeholder_name": "أدخل اسم اللجنة",
+          "type": "نوع اللجنة",
+          "placeholder_type": "أدخل نوع اللجنة",
+          "submit": "إنشاء",
+          "success": "تم إنشاء اللجنة بنجاح"
+        }
+      },
+      "employees": {
+        "title": "الموظفون",
+        "create": "إنشاء موظف",
+        "stat": {
+          "title": "الموظفون"
+        },
+        "table": {
+          "username": "اسم المستخدم",
+          "name": "الاسم",
+          "last": "اللقب",
+          "key": "المعرف",
+          "email": "البريد الإلكتروني",
+          "wilaya": "الولاية",
+          "committee": "اللجنة",
+          "applicants": "المتقدمون",
+          "settings": "الإعدادات"
+        },
+        "previous": "السابق",
+        "next": "التالي",
+        "createEmployee": {
+          "title": "إنشاء موظف",
+          "name": "الاسم",
+          "placeholder_name": "أدخل اسمك",
+          "last": "اللقب",
+          "placeholder_last": "أدخل لقبك",
+          "date_of_birth": "تاريخ الميلاد",
+          "wilaya": "الولاية",
+          "select_wilaya": "اختر الولاية",
+          "daira": "الدائرة",
+          "select_daira": "اختر الدائرة",
+          "submit": "إنشاء الموظف",
+          "submitting": "جارٍ الإرسال...",
+          "success": "تم إنشاء الموظف بنجاح!"
+        }
+      },
+      "applications": {
+        "title": "الطلبات",
+        "evaluate": "تقييم",
+        "stat": {
+          "title": "المتقدمون"
+        },
+        "table": {
+          "key": "المعرف",
+          "date": "التاريخ",
+          "status": "الحالة",
+          "grade": "التقييم",
+          "name": "الاسم",
+          "date_of_birth": "تاريخ الميلاد",
+          "national_id_number": "رقم التعريف الوطني",
+          "settings": "الإعدادات"
+        },
+        "view": {
+          "title": "المتقدم",
+          "change_status": "تغيير الحالة",
+          "grade": "التقييم",
+          "n/a": "غير متوفر",
+          "applicant_wife_information": "معلومات زوجة المتقدم",
+          "wife_name": "اسم الزوجة",
+          "wife_last": "لقب الزوجة",
+          "wife_date_of_birth": "تاريخ ميلاد الزوجة",
+          "wife_place_of_birth": "مكان ميلاد الزوجة",
+          "wife_national_id_number": "رقم تعريف الزوجة",
+          "wife_residence_place": "مكان إقامة الزوجة",
+          "name": "الاسم",
+          "last": "اللقب",
+          "date_of_birth": "تاريخ الميلاد",
+          "committee": "اللجنة",
+          "email": "البريد الإلكتروني",
+          "phone": "الهاتف",
+          "gander": "الجنس",
+          "status": "الحالة",
+          "professional_information": "المعلومات المهنية",
+          "property_information": "معلومات الملكية",
+          "medical_condition_information": "المعلومات الصحية",
+          "is_employed": "هل يعمل؟",
+          "work_nature": "طبيعة العمل",
+          "current_job": "الوظيفة الحالية",
+          "monthly_income": "الدخل الشهري",
+          "current_housing_type": "نوع السكن الحالي",
+          "previously_benefited": "هل استفاد مسبقاً؟",
+          "housing_area": "مساحة السكن (م²)",
+          "other_properties": "عقارات أخرى",
+          "chronic_illness_disability": "مرض مزمن أو إعاقة",
+          "family_member_illness": "مرض أحد أفراد العائلة",
+          "relationship": "العلاقة",
+          "type": "النوع"
+        }
+      }
     }
   }
 }

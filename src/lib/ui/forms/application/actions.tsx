@@ -23,12 +23,12 @@ export default function ApplicationActions({ Application }: ApplicationActionsPr
 
     return (
         <div className="flex items-center gap-2">
-            <button
+            {/* <button
                 onClick={handleEdit}
                 className="text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-all duration-200"
             >
                 <Pencil size={16} />
-            </button>
+            </button> */}
             <button
                 onClick={handleDelete}
                 className="text-red-700 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 transition-all duration-200"

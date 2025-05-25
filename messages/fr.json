@@ -1,19 +1,366 @@
 {
   "HomePage": {
-    "title": "Bonjour le monde !",
-    "description": "Description de la page d'accueil",
+    "title": "Social Housing Support",
+    "description": "Logment Social simplifie les demandes de logement social en Algérie. Accédez à des solutions de logement abordables avec un suivi transparent et des mises à jour en temps réel. Rejoignez des milliers d’Algériens qui ont trouvé leur maison de rêve grâce à notre plateforme.",
+    "join": "Rejoignez-nous",
     "UpBar": {
       "login": "Connexion",
-      "register": "S'inscrire",
-      "logout": "Se déconnecter",
-      "dashboard": "Tableau de bord",
-      "home": "Accueil"
+      "register": "Inscription",
+      "home": "Accueil",
+      "dashboard": "Tableau de Bord",
+      "logout": "Déconnexion",
+      "lang": {
+        "ar": "Arabe",
+        "en": "Anglais",
+        "fr": "Français"
+      }
+    },
+    "JoinNavBar": {
+      "step1": "État Civil",
+      "step2": "Statut Professionnel",
+      "step3": "Propriété",
+      "step4": "État de Santé",
+      "step5": "Téléversement de Documents"
     }
   },
-  "Dashborad":{
-    "UpBar":{
-      "Leave" : "Leave",
-      "Home" : "Home"
+  "join": {
+    "joinUpBar": {
+      "step1": "État Civil",
+      "step2": "Statut Professionnel",
+      "step3": "Propriété",
+      "step4": "État de Santé",
+      "step5": "Téléversement de Documents"
+    },
+    "step1": {
+      "title": "État Civil",
+      "name": "Prénom",
+      "placeholder_name": "Entrez votre prénom",
+      "last": "Nom",
+      "placeholder_last": "Entrez votre nom",
+      "date_of_birth": "Date de Naissance",
+      "placeholder_date_of_birth": "Entrez votre date de naissance",
+      "wilaya": "Wilaya",
+      "placeholder_wilaya": "Entrez votre wilaya",
+      "phone": "Téléphone",
+      "placeholder_phone": "Entrez votre téléphone",
+      "email": "Email",
+      "placeholder_email": "Entrez votre email",
+      "gender": "Sexe",
+      "male": "Homme",
+      "female": "Femme",
+      "placeholder_gender": "Entrez votre sexe",
+      "status": "Statut",
+      "single": "Célibataire",
+      "married": "Marié(e)",
+      "divorced": "Divorcé(e)",
+      "widowed": "Veuf/Veuve",
+      "placeholder_status": "Entrez votre statut",
+      "wife_information": "Informations de l'Épouse",
+      "wife": {
+        "name": "Prénom",
+        "placeholder_name": "Entrez son prénom",
+        "last": "Nom",
+        "placeholder_last": "Entrez son nom",
+        "date_of_birth": "Date de Naissance",
+        "placeholder_date_of_birth": "Entrez sa date de naissance",
+        "place_of_birth": "Lieu de Naissance",
+        "placeholder_place_of_birth": "Entrez son lieu de naissance",
+        "national_id_number": "Numéro de la Carte Nationale",
+        "placeholder_national_id_number": "Entrez son numéro de carte nationale",
+        "residence_place": "Lieu de Résidence",
+        "placeholder_residence_place": "Entrez son lieu de résidence"
+      },
+      "save": "Enregistrer",
+      "next": "Suivant",
+      "success": "État civil soumis avec succès"
+    },
+    "step2": {
+      "title": "Statut Professionnel",
+      "is_employed": "Employé",
+      "yes": "Oui",
+      "no": "Non",
+      "work_nature": "Nature du Travail",
+      "public_sector": "Secteur Public",
+      "private_sector": "Secteur Privé",
+      "unstable": "Précaire",
+      "current_job": "Emploi Actuel",
+      "placeholder_current_job": "Entrez votre emploi actuel",
+      "monthly_income": "Revenu Mensuel",
+      "placeholder_monthly_income": "Entrez votre revenu mensuel",
+      "save": "Enregistrer",
+      "next": "Suivant",
+      "success": "Statut professionnel soumis avec succès"
+    },
+    "step3": {
+      "title": "Propriété",
+      "current_housing_type": "Type de Logement Actuel",
+      "select_housing_type": "Sélectionnez le type de logement",
+      "non_residential_place": "Lieu non résidentiel",
+      "collapsing_communal": "Communal en ruine",
+      "collapsing_private": "Privé en ruine",
+      "with_relatives_or_rented": "Chez des proches ou loué",
+      "functional_housing": "Logement fonctionnel",
+      "previously_benefited": "A déjà bénéficié",
+      "select": "Sélectionner",
+      "yes": "Oui",
+      "no": "Non",
+      "housing_area": "Surface du Logement (m²)",
+      "placeholder_housing_area": "Entrez la surface de votre logement",
+      "other_properties": "Autres Biens",
+      "placeholder_other_properties": "Entrez vos autres biens",
+      "save": "Enregistrer",
+      "next": "Suivant",
+      "success": "Propriété soumise avec succès"
+    },
+    "step4": {
+      "title": "État de Santé",
+      "chronic_illness_disability": "Maladie Chronique ou Handicap",
+      "family_member_illness": "Maladie d’un Membre de la Famille",
+      "relationship": "Lien (si applicable)",
+      "placeholder_relationship": "Entrez votre lien",
+      "type": "Type (si applicable)",
+      "placeholder_type": "Entrez le type",
+      "select": "Sélectionner",
+      "yes": "Oui",
+      "no": "Non",
+      "save": "Enregistrer",
+      "next": "Suivant",
+      "success": "État de santé soumis avec succès"
+    },
+    "step5": {
+      "title": "Téléversement de Documents",
+      "birth_certificate": "Acte de Naissance",
+      "spouse_birth_certificate": "Acte de Naissance du Conjoint",
+      "family_individual_certificate": "Certificat de Composition Familiale",
+      "applicant_national_id": "Carte Nationale du Demandeur",
+      "spouse_national_id": "Carte Nationale du Conjoint",
+      "residence_certificate": "Certificat de Résidence",
+      "employment_unemployment_certificate": "Attestation d’Emploi/Chômage",
+      "spouse_employment_certificate": "Attestation d’Emploi du Conjoint",
+      "spouse_salary_certificate": "Attestation de Salaire du Conjoint",
+      "applicant_salary_certificate": "Attestation de Salaire du Demandeur",
+      "non_real_estate_ownership_certificate": "Certificat de Non-Propriété Immobilière",
+      "medical_certificate": "Certificat Médical",
+      "death_divorce_certificate": "Certificat de Décès/Divorce",
+      "save": "Enregistrer",
+      "next": "Suivant",
+      "success": "Documents téléversés avec succès"
+    },
+    "nationalCard": {
+      "national_card_id": "Carte Nationale",
+      "placeholder_national_card_id": "Entrez votre carte nationale",
+      "confirm_national_card_id": "Confirmer la carte nationale",
+      "placeholder_confirm_national_card_id": "Confirmez votre carte nationale",
+      "submit": "Soumettre"
+    }
+  },
+  "auth": {
+    "register": {
+      "title": "S'inscrire",
+      "email": "E-mail",
+      "placeholder_email": "Entrez votre e-mail",
+      "password": "Mot de passe",
+      "placeholder_password": "Entrez votre mot de passe",
+      "password_confirmation": "Confirmation du mot de passe",
+      "placeholder_password_confirmation": "Confirmez votre mot de passe",
+      "key": "Clé d'inscription",
+      "placeholder_key": "Entrez votre clé d'inscription",
+      "already_have_account": "Vous avez déjà un compte ?",
+      "registering": "Inscription en cours...",
+      "register": "S'inscrire",
+      "login": "Se connecter",
+      "success": "Inscription réussie !",
+      "error": "Échec de l'inscription !",
+      "error_email": "L'e-mail existe déjà !",
+      "error_password": "Le mot de passe doit comporter au moins 8 caractères !",
+      "error_password_confirmation": "Les mots de passe ne correspondent pas !",
+      "error_key": "La clé d'inscription est requise !"
+    },
+    "login": {
+      "title": "Connexion",
+      "email": "E-mail",
+      "placeholder_email": "Entrez votre e-mail",
+      "password": "Mot de passe",
+      "placeholder_password": "Entrez votre mot de passe",
+      "submit": "Soumettre",
+      "submitting": "Connexion en cours...",
+      "success": "Connexion réussie !",
+      "error": "Échec de la connexion !",
+      "error_email": "E-mail ou mot de passe incorrect !",
+      "error_password": "E-mail ou mot de passe incorrect !"
+    }
+  },
+  "Dashboard": {
+    "UpBar": {
+      "Leave": "Quitter",
+      "Home": "Accueil"
+    },
+    "NavBar": {
+      "Home": "Accueil",
+      "Committee": "Commissions",
+      "Admin": "Administrateurs",
+      "Employee": "Employés",
+      "Application": "Demandes"
+    },
+    "content": {
+      "admins": {
+        "title": "Administrateurs",
+        "create": "Créer un Administrateur",
+        "stat": {
+          "title": "Administrateurs",
+          "value": "Administrateurs"
+        },
+        "table": {
+          "username": "Nom d'utilisateur",
+          "key": "Clé",
+          "name": "Prénom",
+          "last": "Nom",
+          "email": "Email",
+          "settings": "Paramètres"
+        },
+        "update": {
+          "title": "Modifier l'Administrateur",
+          "name": "Prénom",
+          "placeholder_name": "Entrez votre prénom",
+          "last": "Nom",
+          "placeholder_last": "Entrez votre nom de famille",
+          "update": "Mettre à jour l'administrateur",
+          "submitting": "Envoi en cours...",
+          "success": "Administrateur mis à jour avec succès !"
+        },
+        "createAdmin": {
+          "title": "Créer un Administrateur",
+          "name": "Prénom",
+          "placeholder_name": "Entrez votre prénom",
+          "last": "Nom",
+          "placeholder_last": "Entrez votre nom de famille",
+          "submit": "Créer l'administrateur",
+          "submitting": "Envoi en cours...",
+          "success": "Administrateur créé avec succès !",
+          "error": "Erreur lors de la création de l'administrateur !",
+          "create": "Créer un Administrateur"
+        }
+      },
+      "committees": {
+        "title": "Commissions",
+        "create": "Créer une Commission",
+        "stat": {
+          "title": "Commissions"
+        },
+        "table": {
+          "username": "Nom d'utilisateur",
+          "name": "Prénom",
+          "last": "Nom",
+          "key": "Clé",
+          "email": "Email",
+          "wilaya": "Wilaya",
+          "employees": "Employés",
+          "applicants": "Candidats",
+          "settings": "Paramètres"
+        },
+        "createCommittee": {
+          "title": "Créer une Commission",
+          "name": "Nom",
+          "placeholder_name": "Entrez le nom de la commission",
+          "submit": "Créer la commission",
+          "submitting": "Envoi en cours...",
+          "success": "Commission créée avec succès !",
+          "error": "Erreur lors de la création de la commission !",
+          "create": "Créer une Commission"
+        },
+        "previous": "Précédent",
+        "next": "Suivant"
+      },
+      "employees": {
+        "title": "Employés",
+        "create": "Créer un Employé",
+        "stat": {
+          "title": "Employés"
+        },
+        "table": {
+          "username": "Nom d'utilisateur",
+          "name": "Prénom",
+          "last": "Nom",
+          "key": "Clé",
+          "email": "Email",
+          "wilaya": "Wilaya",
+          "committee": "Commission",
+          "applicants": "Candidats",
+          "settings": "Paramètres"
+        },
+        "previous": "Précédent",
+        "next": "Suivant",
+        "createEmployee": {
+          "title": "Créer un Employé",
+          "name": "Prénom",
+          "placeholder_name": "Entrez votre prénom",
+          "last": "Nom",
+          "placeholder_last": "Entrez votre nom de famille",
+          "date_of_birth": "Date de naissance",
+          "wilaya": "Wilaya",
+          "select_wilaya": "Sélectionnez une wilaya",
+          "daira": "Daira",
+          "select_daira": "Sélectionnez une daïra",
+          "submit": "Créer l'employé",
+          "submitting": "Envoi en cours...",
+          "success": "Employé créé avec succès !",
+          "error": "Erreur lors de la création de l'employé !",
+          "create": "Créer un Employé"
+        }
+      },
+      "applications": {
+        "title": "Demandes",
+        "evaluate": "Évaluer",
+        "stat": {
+          "title": "Candidats"
+        },
+        "table": {
+          "key": "Clé",
+          "date": "Date",
+          "status": "Statut",
+          "grade": "Note",
+          "name": "Nom",
+          "date_of_birth": "Date de naissance",
+          "national_id_number": "Numéro d'identité nationale",
+          "settings": "Paramètres"
+        },
+        "view": {
+          "title": "Candidat",
+          "change_status": "Changer le statut",
+          "grade": "Note",
+          "n/a": "N/A",
+          "applicant_wife_information": "Informations sur l'épouse du candidat",
+          "wife_name": "Prénom de l'épouse",
+          "wife_last": "Nom de l'épouse",
+          "wife_date_of_birth": "Date de naissance",
+          "wife_place_of_birth": "Lieu de naissance",
+          "wife_national_id_number": "Numéro d'identité nationale",
+          "wife_residence_place": "Lieu de résidence",
+          "name": "Prénom",
+          "last": "Nom",
+          "date_of_birth": "Date de naissance",
+          "committee": "Commission",
+          "email": "Email",
+          "phone": "Téléphone",
+          "gander": "Genre",
+          "status": "Statut",
+          "professional_information": "Informations professionnelles",
+          "property_information": "Informations sur les biens",
+          "medical_condition_information": "Informations médicales",
+          "is_employed": "Est employé",
+          "work_nature": "Nature du travail",
+          "current_job": "Emploi actuel",
+          "monthly_income": "Revenu mensuel",
+          "current_housing_type": "Type de logement actuel",
+          "previously_benefited": "A déjà bénéficié",
+          "housing_area": "Surface du logement (m²)",
+          "other_properties": "Autres biens",
+          "chronic_illness_disability": "Maladie chronique ou handicap",
+          "family_member_illness": "Maladie d’un membre de la famille",
+          "relationship": "Relation",
+          "type": "Type"
+        }
+      }
     }
   }
 }

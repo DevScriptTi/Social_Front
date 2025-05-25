@@ -3,15 +3,15 @@ import { Phone, Mail, Facebook, Twitter, Instagram, Linkedin } from 'lucide-reac
 export function LandingContent({ children }: { children: React.ReactNode }) {
     return (
         <section className="h-[calc(100vh_-_4rem)] flex  gap-4 items-center px-6">
-            <Ellipse1 className='absolute -z-10 -bottom-24 start-0 text-primary dark:text-dark-primary' />
-            <Ellipse2 className='absolute -z-10 bottom-0 end-0 text-primary dark:text-dark-primary' />
-            <Ellipse3 className='absolute -z-10 -top-24 start-0 text-primary dark:text-dark-primary' />
+            <Ellipse1 className='absolute -z-10 -bottom-24 start-0 text-primary dark:text-dark-primary rtl:scale-x-[-1]' />
+            {/* <Ellipse2 className='absolute -z-10 bottom-0 end-0 text-primary dark:text-dark-primary' /> */}
+            <Ellipse3 className='absolute -z-10 -top-24 start-0 text-primary dark:text-dark-primary rtl:scale-x-[-1]' />
             {children}
         </section>
     )
 }
 
-function Ellipse1({ className }: { className: string }) {
+export function Ellipse1({ className }: { className: string }) {
     return (
         <svg width="561" height="292" viewBox="0 0 561 292" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
             <path d="M-29 401.5C-29 523.279 660.338 0 548.5 0C436.662 0 -29 399.279 -29 277.5C-29 155.721 61.6623 57 173.5 57C285.338 57 -29 279.721 -29 401.5Z" fill="currentColor" />
@@ -19,7 +19,7 @@ function Ellipse1({ className }: { className: string }) {
     )
 }
 
-function Ellipse2({ className }: { className: string }) {
+export function Ellipse2({ className }: { className: string }) {
     return (
         <svg width="690" height="778" viewBox="0 0 690 778" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
             <g filter="url(#filter0_d_10_555)">
@@ -41,9 +41,9 @@ function Ellipse2({ className }: { className: string }) {
     )
 }
 
-function Ellipse3({ className }: { className: string }) {
+export function Ellipse3({ className }: { className: string }) {
     return (
-        <svg width="266" height="212" viewBox="0 0 266 212" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+        <svg width="400" height="212" viewBox="0 0 266 212" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
             <ellipse cx="84.5" cy="54" rx="181.5" ry="158" fill="currentColor" />
         </svg>
     )

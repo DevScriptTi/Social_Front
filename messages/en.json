@@ -2,12 +2,193 @@
   "HomePage": {
     "title": "Social Housing Support",
     "description": "Logment Social simplifies social housing applications in Algeria. Access affordable housing solutions with transparent tracking and real-time updates. Join thousands of Algerians who have found their dream homes through our platform.",
+    "join": "Join us",
     "UpBar": {
       "login": "Login",
       "register": "Register",
       "home": "Home",
       "dashboard": "Dashboard",
-      "logout": "Log Out"
+      "logout": "Log Out",
+      "lang": {
+        "ar": "Arabic",
+        "en": "English",
+        "fr": "France"
+      }
+    },
+    "JoinNavBar": {
+      "step1": "Civil Status",
+      "step2": "Professional Status",
+      "step3": "Property ",
+      "step4": "Medical Condition",
+      "step5": "Uploading Documents"
+    }
+  },
+  "join": {
+    "joinUpBar": {
+      "step1": "Civil Status",
+      "step2": "Professional Status",
+      "step3": "Property",
+      "step4": "Medical Condition",
+      "step5": "Uploading Documents"
+    },
+    "step1": {
+      "title": "Civil Status",
+      "name": "Name",
+      "placeholder_name": "Enter Your Name",
+      "last": "Last",
+      "placeholder_last": "Enter Your Last Name",
+      "date_of_birth": "Date of Birth",
+      "placeholder_date_of_birth": "Enter Your Date of Birth",
+      "wilaya": "Wilaya",
+      "placeholder_wilaya": "Enter Your Wilaya",
+      "phone": "Phone",
+      "placeholder_phone": "Enter Your Phone",
+      "email": "Email",
+      "placeholder_email": "Enter Your Email",
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "placeholder_gender": "Enter Your Gender",
+      "status": "Status",
+      "single": "Single",
+      "married": "Married",
+      "divorced": "Divorced",
+      "widowed": "Widowed",
+      "placeholder_status": "Enter Your Status",
+      "wife_information": "Wife Information",
+      "wife": {
+        "name": "Name",
+        "placeholder_name": "Enter Your Name",
+        "last": "Last",
+        "placeholder_last": "Enter Your Last Name",
+        "date_of_birth": "Date of Birth",
+        "placeholder_date_of_birth": "Enter Your Date of Birth",
+        "place_of_birth": "Place of Birth",
+        "placeholder_place_of_birth": "Enter Your Place of Birth",
+        "national_id_number": "National ID Number",
+        "placeholder_national_id_number": "Enter Your National ID Number",
+        "residence_place": "Residence Place",
+        "placeholder_residence_place": "Enter Your Residence Place"
+      },
+      "save": "Save",
+      "next": "Next",
+      "success": "Civil status submitted successfully"
+    },
+    "step2": {
+      "title": "Professional Status",
+      "is_employed": "Is Employed",
+      "yes": "Yes",
+      "no": "No",
+      "work_nature": "Work Nature",
+      "public_sector": "Public Sector",
+      "private_sector": "Private Sector",
+      "unstable": "Unstable",
+      "current_job": "Current Job",
+      "placeholder_current_job": "Enter Your Current Job",
+      "monthly_income": "Monthly Income",
+      "placeholder_monthly_income": "Enter Your Monthly Income",
+      "save": "Save",
+      "next": "Next",
+      "success": "Professional status submitted successfully"
+    },
+    "step3": {
+      "title": "Property",
+      "current_housing_type": "Current Housing Type",
+      "select_housing_type": "Select Housing Type",
+      "non_residential_place": "Non-residential place",
+      "collapsing_communal": "Collapsing communal",
+      "collapsing_private": "Collapsing private",
+      "with_relatives_or_rented": "With relatives or rented",
+      "functional_housing": "Functional housing",
+      "previously_benefited": "Previously Benefited",
+      "select": "Select",
+      "yes": "Yes",
+      "no": "No",
+      "housing_area": "Housing Area (m²)",
+      "placeholder_housing_area": "Enter Your Housing Area",
+      "other_properties": "Other Properties",
+      "placeholder_other_properties": "Enter Your Other Properties",
+      "save": "Save",
+      "next": "Next",
+      "success": "Property submitted successfully"
+    },
+    "step4": {
+      "title": "Medical Condition",
+      "chronic_illness_disability": "Chronic Illness or Disability",
+      "family_member_illness": "Family Member Illness",
+      "relationship": "Relationship (if any)",
+      "placeholder_relationship": "Enter Your Relationship",
+      "type": "Type (if any)",
+      "placeholder_type": "Enter Your Type",
+      "select": "Select",
+      "yes": "Yes",
+      "no": "No",
+      "save": "Save",
+      "next": "Next",
+      "success": "Medical condition submitted successfully"
+    },
+    "step5": {
+      "title": "Uploading Documents",
+      "birth_certificate": "Birth Certificate",
+      "spouse_birth_certificate": "Spouse Birth Certificate",
+      "family_individual_certificate": "Family Individual Certificate",
+      "applicant_national_id": "Applicant National ID",
+      "spouse_national_id": "Spouse National ID",
+      "residence_certificate": "Residence Certificate",
+      "employment_unemployment_certificate": "Employment/Unemployment Certificate",
+      "spouse_employment_certificate": "Spouse Employment Certificate",
+      "spouse_salary_certificate": "Spouse Salary Certificate",
+      "applicant_salary_certificate": "Applicant Salary Certificate",
+      "non_real_estate_ownership_certificate": "Non Real Estate Ownership Certificate",
+      "medical_certificate": "Medical Certificate",
+      "death_divorce_certificate": "Death/Divorce Certificate",
+      "save": "Save",
+      "next": "Next",
+      "success": "Documents uploaded successfully"
+    },
+    "nationalCard": {
+      "national_card_id": "National Card ID",
+      "placeholder_national_card_id": "Enter Your National Card ID",
+      "confirm_national_card_id": "Confirm National Card ID",
+      "placeholder_confirm_national_card_id": "Confirm Your National Card ID",
+      "submit": "Submit"
+    }
+  },
+  
+  "auth": {
+    "register": {
+      "title": "Register",
+      "email": "Email",
+      "placeholder_email": "Enter Your Email",
+      "password": "Password",
+      "placeholder_password": "Enter Your Password",
+      "password_confirmation": "Password Confirmation",
+      "placeholder_password_confirmation": "Confirm Your Password",
+      "key": "Registration Key",
+      "placeholder_key": "Enter Your Registration Key",
+      "already_have_account": "Already have an account?",
+      "registering": "Registering...",
+      "register": "Register",
+      "login": "Login",
+      "success": "Registration successful!",
+      "error": "Registration failed!",
+      "error_email": "Email already exists!",
+      "error_password": "Password must be at least 8 characters long!",
+      "error_password_confirmation": "Passwords don't match!",
+      "error_key": "Registration key is required!"
+    },
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "placeholder_email": "Enter Your Email",
+      "password": "Password",
+      "placeholder_password": "Enter Your Password",
+      "submit": "Submit",
+      "submitting": "Submitting...",
+      "success": "Login successful!",
+      "error": "Login failed!",
+      "error_email": "Email or password is incorrect!",
+      "error_password": "Email or password is incorrect!"
     }
   },
   "Dashboard": {
@@ -18,7 +199,169 @@
     "NavBar": {
       "Home": "Home",
       "Committee": "Committees",
-      "Admin": "Admins"
+      "Admin": "Admins",
+      "Employee": "Employees",
+      "Application": "Applications"
+    },
+    "content": {
+      "admins": {
+        "title": "Admins",
+        "create": "Create Admin",
+        "stat": {
+          "title": "Admins",
+          "value": "Admins"
+        },
+        "table": {
+          "username": "Username",
+          "key": "Key",
+          "name": "Name",
+          "last": "Last",
+          "email": "Email",
+          "settings": "Settings"
+        },
+        "update": {
+          "title": "Edit Admin",
+          "name": "Name",
+          "placeholder_name": "Enter Your Name",
+          "last": "Last",
+          "placeholder_last": "Enter Your Last Name",
+          "update": "Update Admin",
+          "submitting": "Submitting...",
+          "success": "Admin updated successfully!"
+        },
+        "createAdmin": {
+          "title": "Create Admin",
+          "name": "Name",
+          "placeholder_name": "Enter Your Name",
+          "last": "Last",
+          "placeholder_last": "Enter Your Last Name",
+          "submit": "Create Admin",
+          "submitting": "Submitting...",
+          "success": "Admin created successfully!",
+          "create": "Create Admin",
+          "error": "Admin creation failed!"
+        }
+      },
+      "committees": {
+        "title": "Committees",
+        "create": "Create Committee",
+        "stat": {
+          "title": "Committees"
+        },
+        "table": {
+          "username": "Username",
+          "name": "Name",
+          "last": "Last",
+          "key": "Key",
+          "email": "Email",
+          "wilaya": "Wilaya",
+          "employees": "Employees",
+          "applicants": "Applicants",
+          "settings": "Settings"
+        },
+        "createCommittee": {
+          "title": "Create Committee",
+          "name": "Name",
+          "placeholder_name": "Enter Your Name",
+          "submit": "Create Committee",
+          "submitting": "Submitting...",
+          "success": "Committee created successfully!",
+          "error": "Committee creation failed!",
+          "create": "Create Committee"
+        },
+        "previous": "Previous",
+        "next": "Next"
+      },
+      "employees": {
+        "title": "Employees",
+        "create": "Create Employee",
+        "stat": {
+          "title": "Employees"
+        },
+        "table": {
+          "username": "Username",
+          "name": "Name",
+          "last": "Last",
+          "key": "Key",
+          "email": "Email",
+          "wilaya": "Wilaya",
+          "committee": "Committee",
+          "applicants": "Applicants",
+          "settings": "Settings"
+        },
+        "previous": "Previous",
+        "next": "Next",
+        "createEmployee": {
+          "title": "Create Employee",
+          "name": "Name",
+          "placeholder_name": "Enter Your Name",
+          "last": "Last",
+          "placeholder_last": "Enter Your Last Name",
+          "date_of_birth": "Date of Birth",
+          "wilaya": "Wilaya",
+          "select_wilaya": "Select Wilaya",
+          "daira": "Daira",
+          "select_daira": "Select Daira",
+          "submit": "Create Employee",
+          "submitting": "Submitting...",
+          "success": "Employee created successfully!",
+          "error": "Employee creation failed!",
+          "create": "Create Employee"
+        }
+      },
+      "applications": {
+        "title": "Applications",
+        "evaluate": "Evaluate",
+        "stat": {
+          "title": "Applicants"
+        },
+        "table": {
+          "key": "Key",
+          "date": "Date",
+          "status": "Status",
+          "grade": "Grade",
+          "name": "Name",
+          "date_of_birth": "Date of Birth",
+          "national_id_number": "National ID Number",
+          "settings": "Settings"
+        },
+        "view": {
+          "title": "Applicant",
+          "change_status": "Change Status",
+          "grade": "Grade",
+          "n/a": "N/A",
+          "applicant_wife_information": "Applicant Wife Information",
+          "wife_name": "Wife Name",
+          "wife_last": "Wife Last",
+          "wife_date_of_birth": "Date of Birth",
+          "wife_place_of_birth": "Place of Birth",
+          "wife_national_id_number": "National ID Number",
+          "wife_residence_place": "Residence Place",
+          "name": "Name",
+          "last": "Last",
+          "date_of_birth": "Date of Birth",
+          "committee": "Committee",
+          "email": "Email",
+          "phone": "Phone",
+          "gander": "Gender",
+          "status": "Status",
+          "professional_information": "Professional Information",
+          "property_information": "Property Information",
+          "medical_condition_information": "Medical Condition Information",
+          "is_employed": "Is Employed",
+          "work_nature": "Work Nature",
+          "current_job": "Current Job",
+          "monthly_income": "Monthly Income",
+          "current_housing_type": "Current Housing Type",
+          "previously_benefited": "Previously Benefited",
+          "housing_area": "Housing Area (m²)",
+          "other_properties": "Other Properties",
+          "chronic_illness_disability": "Chronic Illness or Disability",
+          "family_member_illness": "Family Member Illness",
+          "relationship": "Relationship",
+          "type": "Type"
+        }
+      }
     }
   }
 }
