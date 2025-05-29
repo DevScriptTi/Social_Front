@@ -33,9 +33,15 @@ export default async function NavBar_() {
                 )}
                 {
                     await isCommittee() && (
-                        <NavItem link={`/${locale}/dashboard/employees`} icon={<User2Icon size={18} />}>
-                            {t('Dashboard.NavBar.Employee')}
-                        </NavItem>
+                        <>
+                            <NavItem link={`/${locale}/dashboard/employees`} icon={<User2Icon size={18} />}>
+                                {t('Dashboard.NavBar.Employee')}
+                            </NavItem>
+                            <NavItem link={`/${locale}/dashboard/socials`} icon={<Building2 size={18} />}>
+                                {t('Dashboard.NavBar.Social')}
+                            </NavItem>
+                        </>
+
                     )
                 }
                 {

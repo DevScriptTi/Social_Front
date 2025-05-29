@@ -21,7 +21,7 @@ export default async function EmployeesTable({ page }: EmployeesTableProps) {
         return (
             <>
                 <DashContentTable>
-                    <TableThead list={[t('username'), t('name'), t('last'), t('key'), t('email'), t('wilaya'), t('committee'), t('applicants'), t('settings') ]} />
+                    <TableThead list={[t('username'), t('name'), t('last'), t('key'), t('email'), t('applicants'), t('settings') ]} />
                     <tbody>
                         {Employees.map((Employee) => (
                             <TableTr key={Employee.id}>
@@ -37,12 +37,6 @@ export default async function EmployeesTable({ page }: EmployeesTableProps) {
                                 </TableTd>
                                 <TableTd>
                                     {Employee.key?.user?.email || 'No Account'}
-                                </TableTd>
-                                <TableTd>
-                                    {Employee.daira?.wilaya?.name} - {Employee.daira?.name}
-                                </TableTd>
-                                <TableTd>
-                                    {Employee.committee?.daira?.wilaya?.name} - {Employee.committee?.daira?.name}
                                 </TableTd>
                                 <TableTd>
                                     {Employee?.applications_count || 0}

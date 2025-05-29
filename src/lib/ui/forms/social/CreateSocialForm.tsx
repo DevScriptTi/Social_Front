@@ -1,7 +1,7 @@
 "use client";
 
 import { Input } from "@/lib/ui/components/global/Inputs/inputs";
-import { createEmployee } from "@/lib/server/actions/employee/employeeActions";
+import { createSocial } from "@/lib/server/actions/social/socialActions";
 import { useForm } from "react-hook-form";
 import Button from "@/lib/ui/components/global/Buttons/Button";
 import { useRouter } from "next/navigation";
@@ -9,39 +9,26 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
-import { Wilaya, getWilayas } from "@/lib/server/actions/employee/getWilayas";
-import { SimpleSelect } from "@/lib/ui/components/global/Inputs/SimpleSelect";
 import { useTranslations } from "next-intl";
-const createEmployeeSchema = z.object({
+const createSocialSchema = z.object({
     name: z.string()
         .min(1, "Name is required")
         .regex(/^[A-Z][a-z]*$/, "Only letters allowed, first letter must be capital"),
-    last: z.string()
-        .min(1, "Last name is required")
-        .regex(/^[A-Z][a-z]*$/, "Only letters allowed, first letter must be capital"),
-    date_of_birth: z.string()
-        .min(1, "Date of birth is required")
-        .refine((date) => {
-            const today = new Date();
-            const birthDate = new Date(date);
-            const age = today.getFullYear() - birthDate.getFullYear();
-            return age >= 18;
-        }, "Must be at least 18 years old"),
+    max_application: z.number().min(1, "Max application is required")       
 });
 
-type CreateEmployeeFormData = z.infer<typeof createEmployeeSchema>;
+type CreateSocialFormData = z.infer<typeof createSocialSchema>;
 
-export default function CreateEmployeeForm() {
+export default function CreateSocialForm() {
     const router = useRouter();
     
     const {
         register,
         handleSubmit,
         formState: { errors, isSubmitting, isSubmitSuccessful },
-        setValue,
         reset,
-    } = useForm<CreateEmployeeFormData>({
-        resolver: zodResolver(createEmployeeSchema),
+    } = useForm<CreateSocialFormData>({
+        resolver: zodResolver(createSocialSchema),
     });
 
    
@@ -50,7 +37,7 @@ export default function CreateEmployeeForm() {
         if (isSubmitSuccessful) {
             const timer = setTimeout(() => {
                 router.refresh();
-                router.push('/dashboard/employees');
+                router.push('/dashboard/socials');
             }, 2000);
             return () => clearTimeout(timer);
         }
@@ -58,15 +45,15 @@ export default function CreateEmployeeForm() {
 
    
 
-    const onSubmit = async (data: CreateEmployeeFormData) => {
+    const onSubmit = async (data: CreateSocialFormData) => {
         try {
-            await createEmployee(data);
+            await createSocial(data);
             reset(); // Reset form after successful submission
         } catch (error) {
-            console.error('Error creating employee:', error);
+            console.error('Error creating social:', error);
         }
     };
-    const t = useTranslations('Dashboard.content.employees.createEmployee');
+    const t = useTranslations('Dashboard.content.socials.createSocial');
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 w-full max-w-md">
             {isSubmitSuccessful && (
@@ -83,22 +70,12 @@ export default function CreateEmployeeForm() {
                 register={register}
             />
             <Input
-                label="last"
-                title={t('last')}
-                placeholder={t('placeholder_last')}
-                error={errors.last?.message}
+                label="max_application"
+                title={t('max_application')}
+                placeholder={t('placeholder_max_application')}
+                error={errors.max_application?.message}
                 register={register}
             />
-            <Input
-                label="date_of_birth"
-                title={t('date_of_birth')}
-                
-                type="date"
-                error={errors.date_of_birth?.message}
-                register={register}
-            />
-           
-           
             <Button
                 type="submit"
                 mode="filled"

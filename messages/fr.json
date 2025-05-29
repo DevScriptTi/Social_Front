@@ -36,9 +36,15 @@
       "name": "Prénom",
       "placeholder_name": "Entrez votre prénom",
       "last": "Nom",
+      "number_of_children": "Nombre d'enfants",
+      "placeholder_number_of_children": "Entrez votre nombre d'enfants",
       "placeholder_last": "Entrez votre nom",
       "date_of_birth": "Date de Naissance",
       "placeholder_date_of_birth": "Entrez votre date de naissance",
+      "place_of_birth": "Lieu de Naissance",
+      "placeholder_place_of_birth": "Entrez votre lieu de naissance",
+      "residence_place": "Lieu de Résidence",
+      "placeholder_residence_place": "Entrez votre lieu de résidence",
       "wilaya": "Wilaya",
       "placeholder_wilaya": "Entrez votre wilaya",
       "phone": "Téléphone",
@@ -148,9 +154,9 @@
     },
     "nationalCard": {
       "national_card_id": "Carte Nationale",
-      "placeholder_national_card_id": "Entrez votre carte nationale",
+      "placeholder_national_card_id": "Entrez votre carte nationale (10 chiffres)",
       "confirm_national_card_id": "Confirmer la carte nationale",
-      "placeholder_confirm_national_card_id": "Confirmez votre carte nationale",
+      "placeholder_confirm_national_card_id": "Confirmez votre carte nationale (10 chiffres)",
       "submit": "Soumettre"
     }
   },
@@ -200,7 +206,8 @@
       "Committee": "Commissions",
       "Admin": "Administrateurs",
       "Employee": "Employés",
-      "Application": "Demandes"
+      "Application": "Demandes",
+      "Social": "Socials"
     },
     "content": {
       "admins": {
@@ -310,7 +317,18 @@
       },
       "applications": {
         "title": "Demandes",
-        "evaluate": "Évaluer",
+        "evaluate": {
+          "title": "Évaluer",
+          "form": {
+            "name": "Numéro de la demande",
+            "placeholder_name": "Entrez le numéro de la demande",
+            "social": "Social",
+            "placeholder_social": "Entrez le nom du social",
+            "submit": "Soumettre",
+            "submitting": "Envoi en cours...",
+            "success": "Évaluation soumise avec succès !"
+          }
+        },
         "stat": {
           "title": "Candidats"
         },
@@ -322,7 +340,12 @@
           "name": "Nom",
           "date_of_birth": "Date de naissance",
           "national_id_number": "Numéro d'identité nationale",
-          "settings": "Paramètres"
+          "settings": "Paramètres",
+          "pending": "En attente",
+          "completed": "En cours",
+          "accepted": "Accepté",
+          "classed": "Classé",
+          "denied": "Refusé"
         },
         "view": {
           "title": "Candidat",
@@ -358,8 +381,30 @@
           "chronic_illness_disability": "Maladie chronique ou handicap",
           "family_member_illness": "Maladie d’un membre de la famille",
           "relationship": "Relation",
-          "type": "Type"
+          "type": "Type",
+          "status_changed": "Statut changé avec succès !"
         }
+      },
+      "socials": {
+        "title": "Socials",
+        "create": "Créer un Social",
+        "stat": {
+          "title": "Socials"
+        },
+        "table": {
+          "name": "Nom",
+          "max_application": "Max Application",
+          "number_of_application": "Number of Application",
+          "created_at": "Created At",
+          "updated_at": "Updated At",
+          "settings": "Settings"
+        },
+        "view": {
+          "title": "Social",
+          "evaluate": "Évaluer"
+        },
+        "previous": "Précédent",
+        "next": "Suivant"
       }
     }
   }

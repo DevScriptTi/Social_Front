@@ -1,29 +1,32 @@
 import { getApplicationView } from "@/lib/server/actions/join/applicant";
 import { ApplicationResponse } from "@/lib/server/types/join/applicationUpdate";
-import Button from "@/lib/ui/components/global/Buttons/Button";
 import { DashContent } from "@/lib/ui/components/local/Dashboard/DashCrudContent";
-import { Pencil } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
+import AcceptOrReject from "./AcceptOrReject";
 
 export default async function applicationView({ params }: { params: { application: string } }) {
     const { application } = await params
     const t = await getTranslations('Dashboard.content.applications.view');
+    const t2 = await getTranslations('Dashboard.content.applications.table');
     const applicationData: ApplicationResponse | { success: false } = await getApplicationView(application) as ApplicationResponse
+    console.log(applicationData.application.status);
     return (
         <DashContent>
             <h1 className="text-headline-large font-bold text-primary-container  dark:text-dark-primary-container">{t('title')} {applicationData?.application?.key} </h1>
             <div
-                className="mt-4 flex gap-2"
+                className="mt-4 flex items-center gap-2"
             >
-                <span
-                    className={`${applicationData?.application?.status === "pending " ? "text-yellow-500" : applicationData?.application?.status === "approved" ? "bg-green-500" : "bg-red-500"} text-white px-4 py-2 rounded-md`}
-                >
-                    {applicationData?.application?.status}
-                </span>
-                <Button mode="filled" icon={<Pencil size={24}  />}>
-                    {t('change_status')}
-                </Button>
+                {
+                    applicationData?.application?.status === 'pending' && <span className="text-yellow-700 dark:text-yellow-400">{t2('pending')}</span> ||
+                    applicationData?.application?.status === 'on-review' && <span className="text-blue-700 dark:text-blue-400">{t2('completed')}</span> ||
+                    applicationData?.application?.status === 'not-classed' && <span className="text-orange-700 dark:text-orange-400">{t2('accepted')}</span> ||
+                    applicationData?.application?.status === 'accepted' && <span className="text-green-700 dark:text-green-400">{t2('classed')}</span> ||
+                    applicationData?.application?.status === 'denied' && <span className="text-red-700 dark:text-red-400">{t2('denied')}</span>
+                }
+                {
+                    applicationData?.application?.status === 'on-review' && <AcceptOrReject applicationData={applicationData} />
+                }
             </div>
             <Line />
             <div className="flex gap-4">

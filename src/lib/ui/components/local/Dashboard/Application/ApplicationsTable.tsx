@@ -4,12 +4,14 @@ import ApplicationActions from "@/lib/ui/forms/application/actions";
 import { getTranslations } from "next-intl/server";
 interface ApplicationsTableProps {
     page: string;
+    status: string;
+    sort: string;
 }
 
-export default async function ApplicationsTable({ page }: ApplicationsTableProps) {
+export default async function ApplicationsTable({ page, status, sort }: ApplicationsTableProps) {
     try {
         const currentPage = parseInt(page) || 1;
-        const response = await getApplications(currentPage);
+        const response = await getApplications(currentPage, status, sort);
 
         if (!response || !response.applications.data) {
             return <div className="">
@@ -32,7 +34,13 @@ export default async function ApplicationsTable({ page }: ApplicationsTableProps
                                     {Application.date}
                                 </TableTd>
                                 <TableTd>
-                                    {Application.status}
+                                    {
+                                        Application.status === 'pending' && <span className="text-yellow-700 dark:text-yellow-400">{t('pending')}</span> ||
+                                        Application.status === 'on-review' && <span className="text-blue-700 dark:text-blue-400">{t('completed')}</span> ||
+                                        Application.status === 'not-classed' && <span className="text-orange-700 dark:text-orange-400">{t('accepted')}</span> ||
+                                        Application.status === 'accepted' && <span className="text-green-700 dark:text-green-400">{t('classed')}</span> ||
+                                        Application.status === 'denied' && <span className="text-red-700 dark:text-red-400">{t('denied')}</span>
+                                    }
                                 </TableTd>
                                 <TableTd>
                                     {Application.grade}

@@ -5,12 +5,9 @@ import Button from "../../components/global/Buttons/Button";
 
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { SimpleSelect } from "../../components/global/Inputs/SimpleSelect";
 import { applicant } from "@/lib/server/actions/join/applicant";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { AllCommittee, getCommittees } from "@/lib/server/actions/application/getWilayas";
 import { CheckCircle, Loader2 } from "lucide-react";
 import { ApplicationResponse } from "@/lib/server/types/join/applicationUpdate";
 import { useTranslations } from "next-intl";
@@ -28,6 +25,7 @@ const wifeSchema = z.object({
 const applicantSchema = z.object({
     name: z.string().max(255),
     last: z.string().max(255),
+    children_number: z.coerce.number().int().min(0).max(100),
     date_of_birth: z.string().regex(dateRegex, 'Invalid date format (YYYY-MM-DD)'),
     place_of_birth: z.string().max(255),
     residence_place: z.string().max(255),
@@ -35,8 +33,6 @@ const applicantSchema = z.object({
     phone: z.string().max(255),
     gender: z.enum(['male', 'female']),
     status: z.enum(['single', 'married', 'divorced', 'widowed']),
-    children_number: z.coerce.number().int().min(0).max(65535),
-    committee_id: z.coerce.number().int().optional(),
     wife: z.lazy(() => wifeSchema.optional()),
 }).superRefine((data, ctx) => {
     if (data.status === 'married' && !data.wife) {
@@ -59,10 +55,12 @@ type NationalCardFormData = z.infer<typeof applicantSchema>;
 
 export default function Step1Form({ applicationResponse }: { applicationResponse: ApplicationResponse | { success: false } }) {
     const application = applicationResponse.success === false ? null : applicationResponse.application;
-    const [committees, setCommittees] = useState<AllCommittee[]>([]);
+    console.log('application', application)
     const {
         register,
         handleSubmit,
+        watch,
+        setValue,
         formState: { errors, isSubmitting, isSubmitted },
     } = useForm<NationalCardFormData>({
         resolver: zodResolver(applicantSchema),
@@ -77,7 +75,6 @@ export default function Step1Form({ applicationResponse }: { applicationResponse
             gender: application?.applicant.gender,
             status: application?.applicant.status,
             children_number: application?.applicant.children_number,
-            committee_id: application?.committee?.id ?? 1,
             wife: application?.applicant.wife ? {
                 name: application?.applicant.wife.name,
                 last: application?.applicant.wife.last,
@@ -89,31 +86,19 @@ export default function Step1Form({ applicationResponse }: { applicationResponse
         } : {}
     });
 
-    useEffect(() => {
-        const fetchWilayas = async () => {
-            try {
-                const response = await getCommittees();
-                setCommittees(response.committees);
-            } catch (error) {
-                console.error('Error fetching wilayas:', error);
-            }
-        };
-        fetchWilayas();
-    }, []);
-
+    
+    console.log('errors', errors)
     const onSubmit: SubmitHandler<NationalCardFormData> = async (data) => {
-        // Remove wife object if status isn't married
+        // return console.log('data', data)
         const requestData = {
             ...data,
             wife: status != 'married' && status != 'divorced' ? data.wife : undefined
         };
-        console.log('requestData', requestData)
         try {
             await applicant(requestData);
         } catch (error) {
             console.error('Error submitting applicant:', error);
         }
-
     }
     const t = useTranslations('join.step1');
     return (
@@ -145,27 +130,38 @@ export default function Step1Form({ applicationResponse }: { applicationResponse
                     register={register}
                     placeholder={t('placeholder_last')}
                 />
+                <Input<NationalCardFormData>
+                    error={errors?.children_number?.message}
+                    title={t('number_of_children')}
+                    label="children_number"
+                    register={register}
+                    placeholder={t('placeholder_number_of_children')}
+                />
             </div>
-            <Input<NationalCardFormData>
-                error={errors?.date_of_birth?.message}
-                title={t('date_of_birth')}
-                label="date_of_birth"
-                register={register}
-                type="date"
-                placeholder={t('placeholder_date_of_birth')}
-            />
-            <SimpleSelect
-                label="wilaya"
-                title={t('wilaya')}
-                error={errors?.committee_id?.message}
-                register={register('committee_id')}
-            >
-                {committees.map((committee) => (
-                    <option key={committee.id} value={committee.id}>
-                        {committee.daira.name}
-                    </option>
-                ))}
-            </SimpleSelect>
+            <div className="flex gap-4">
+                <Input<NationalCardFormData>
+                    error={errors?.date_of_birth?.message}
+                    title={t('date_of_birth')}
+                    label="date_of_birth"
+                    register={register}
+                    type="date"
+                    placeholder={t('placeholder_date_of_birth')}
+                />
+                <Input<NationalCardFormData>
+                    error={errors?.place_of_birth?.message}
+                    title={t('place_of_birth')}
+                    label="place_of_birth"
+                    register={register}
+                    placeholder={t('placeholder_place_of_birth')}
+                />
+                <Input<NationalCardFormData>
+                    error={errors?.residence_place?.message}
+                    title={t('residence_place')}
+                    label="residence_place"
+                    register={register}
+                    placeholder={t('placeholder_residence_place')}
+                />
+            </div>
             <div className="flex gap-4">
                 <Input<NationalCardFormData>
                     error={errors?.phone?.message}
@@ -197,6 +193,11 @@ export default function Step1Form({ applicationResponse }: { applicationResponse
                     title={t('status')}
                     label="status"
                     register={register("status")}
+                    onChange={(e) => {
+                        if (e.target.value === 'married') {
+                            setValue('status', 'married')
+                        }
+                    }}
                 >
                     <option value="single">{t('single')}</option>
                     <option value="married">{t('married')}</option>
@@ -205,62 +206,65 @@ export default function Step1Form({ applicationResponse }: { applicationResponse
                 </SimpleSelect>
 
             </div>
-            <div >
-                <h3 className="text-lg font-medium mb-6">{t('wife_information')}</h3>
+            {
+                watch('status') === 'married' && (
+                    <div >
+                        <h3 className="text-lg font-medium mb-6">{t('wife_information')}</h3>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* Name and Last Name */}
-                    <div className="flex gap-4">
-                        <Input<NationalCardFormData>
-                            error={errors?.wife?.name?.message}
-                            title={t('wife.name')}
-                            label="wife.name"
-                            register={register}
-                            placeholder={t('wife.placeholder_name')}
-                        />
-                        <Input<NationalCardFormData>
-                            error={errors?.wife?.last?.message}
-                            title={t('wife.last')}
-                            label="wife.last"
-                            register={register}
-                            placeholder={t('wife.placeholder_last')}
-                        />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="flex gap-4">
+                                <Input<NationalCardFormData>
+                                    error={errors?.wife?.name?.message}
+                                    title={t('wife.name')}
+                                    label="wife.name"
+                                    register={register}
+                                    placeholder={t('wife.placeholder_name')}
+                                />
+                                <Input<NationalCardFormData>
+                                    error={errors?.wife?.last?.message}
+                                    title={t('wife.last')}
+                                    label="wife.last"
+                                    register={register}
+                                    placeholder={t('wife.placeholder_last')}
+                                />
+                            </div>
+
+                            {/* Date and Place of Birth */}
+                            <Input<NationalCardFormData>
+                                error={errors?.wife?.date_of_birth?.message}
+                                title={t('wife.date_of_birth')}
+                                label="wife.date_of_birth"
+                                type="date"
+                                register={register}
+                                placeholder={t('wife.placeholder_date_of_birth')}
+                            />
+                            <Input<NationalCardFormData>
+                                error={errors?.wife?.place_of_birth?.message}
+                                title={t('wife.place_of_birth')}
+                                label="wife.place_of_birth"
+                                register={register}
+                                placeholder={t('wife.placeholder_place_of_birth')}
+                            />
+
+                            {/* National ID and Residence */}
+                            <Input<NationalCardFormData>
+                                error={errors?.wife?.national_id_number?.message}
+                                title={t('wife.national_id_number')}
+                                label="wife.national_id_number"
+                                register={register}
+                                placeholder={t('wife.placeholder_national_id_number')}
+                            />
+                            <Input<NationalCardFormData>
+                                error={errors?.wife?.residence_place?.message}
+                                title={t('wife.residence_place')}
+                                label="wife.residence_place"
+                                register={register}
+                                placeholder={t('wife.placeholder_residence_place')}
+                            />
+                        </div>
                     </div>
-
-                    {/* Date and Place of Birth */}
-                    <Input<NationalCardFormData>
-                        error={errors?.wife?.date_of_birth?.message}
-                        title={t('wife.date_of_birth')}
-                        label="wife.date_of_birth"
-                        type="date"
-                        register={register}
-                        placeholder={t('wife.placeholder_date_of_birth')}
-                    />
-                    <Input<NationalCardFormData>
-                        error={errors?.wife?.place_of_birth?.message}
-                        title={t('wife.place_of_birth')}
-                        label="wife.place_of_birth"
-                        register={register}
-                        placeholder={t('wife.placeholder_place_of_birth')}
-                    />
-
-                    {/* National ID and Residence */}
-                    <Input<NationalCardFormData>
-                        error={errors?.wife?.national_id_number?.message}
-                        title={t('wife.national_id_number')}
-                        label="wife.national_id_number"
-                        register={register}
-                        placeholder={t('wife.placeholder_national_id_number')}
-                    />
-                    <Input<NationalCardFormData>
-                        error={errors?.wife?.residence_place?.message}
-                        title={t('wife.residence_place')}
-                        label="wife.residence_place"
-                        register={register}
-                        placeholder={t('wife.placeholder_residence_place')}
-                    />
-                </div>
-            </div>
+                )
+            }
             <div className=" flex gap-3">
                 {isSubmitting ?
                     <Button icon={<Loader2 size={24} className="animate-spin" />} type="submit" mode="filled">{t('save')}</Button>

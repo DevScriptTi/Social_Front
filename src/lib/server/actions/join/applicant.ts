@@ -17,10 +17,8 @@ const axiosInstance = axios.create({
 export async function applicant(data: any): Promise<{ success: boolean }> {
     const cookieStore = await cookies();
     const application_key = cookieStore.get('application_key');
-    console.log('data', data)
     try {
-        const response = await axiosInstance.post(`/applications/${application_key?.value}/applicant`, data);
-        console.log('response', response)
+        await axiosInstance.post(`/applications/${application_key?.value}/applicant`, data);
         revalidatePath('/join/step1');
         return { success: true };
     } catch (error) {
@@ -93,6 +91,7 @@ export async function getApplication(): Promise<ApplicationResponse | { success:
     const application_key = cookieStore.get('application_key');
     try {
         const response = await axiosInstance.get(`/applications/${application_key?.value}`);
+        
         return response.data;
     } catch (error) {
         console.error('Error:', error.response?.data);

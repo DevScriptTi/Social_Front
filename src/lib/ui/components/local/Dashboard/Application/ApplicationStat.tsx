@@ -3,10 +3,15 @@ import { DashContentStat, DashContentStatItem } from "../DashCrudContent";
 import { Users } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
-export default async function ApplicationStat() {
+interface ApplicationStatProps {
+    status: string;
+    sort: string;
+}
+
+export default async function ApplicationStat({ status, sort }: ApplicationStatProps) {
     const t = await getTranslations('Dashboard.content.applications');
     try {
-        const response = await getApplications();
+        const response = await getApplications(1, status, sort);
 
         if (!response || !response.applications.data) {
             return null;

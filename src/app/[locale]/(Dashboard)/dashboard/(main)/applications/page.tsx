@@ -3,28 +3,28 @@ import ApplicationPagination from "@/lib/ui/components/local/Dashboard/Applicati
 import ApplicationsTable from "@/lib/ui/components/local/Dashboard/Application/ApplicationsTable";
 import ApplicationStat from "@/lib/ui/components/local/Dashboard/Application/ApplicationStat";
 import { Suspense } from "react";
-import Button from "@/lib/ui/components/global/Buttons/Button";
 import { getTranslations } from "next-intl/server";
+import Evaluate from "./Evaluate";
 interface PageProps {
-    searchParams: { page?: string }
+    searchParams: { page?: string, status?: string, sort?: string }
 }
 
 export default async function page({ searchParams }: PageProps) {
     const page = (await searchParams).page || "1";
+    const status = (await searchParams).status || "";
+    const sort = (await searchParams).sort || "";
     const t = await getTranslations('Dashboard.content.applications');
     return (
         <DashContent>
             <DashContenTitle>{t('title')}</DashContenTitle>
             <Suspense fallback={<DashContentStatItemSkeleton />}>
-                <ApplicationStat />
+                <ApplicationStat status={status} sort={sort} />
             </Suspense>
             <DashContentAction>
-                <Button mode="filled" >
-                   {t('evaluate')}
-                </Button>
+                <Evaluate />
             </DashContentAction>
             <Suspense fallback={<DashContentTableSkeleton />}>
-                <ApplicationsTable page={page} />
+                <ApplicationsTable page={page} status={status} sort={sort} />
             </Suspense>
             <Suspense fallback={<DashContentPaginationSkeleton />}>
                 <ApplicationPagination currentPage={parseInt(page)} />

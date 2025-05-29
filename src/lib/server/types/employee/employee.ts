@@ -79,8 +79,6 @@ export interface CreateEmployeeRequest {
     name: string;
     last: string;
     date_of_birth: string;
-    daira_id: number;
-    committee_id?: number;
 }
 
 export interface EmployeeErrorResponse {

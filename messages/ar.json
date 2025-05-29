@@ -36,9 +36,15 @@
       "name": "الاسم",
       "placeholder_name": "أدخل اسمك",
       "last": "اللقب",
+      "number_of_children": "عدد الأطفال",
+      "placeholder_number_of_children": "أدخل عدد أطفالك",
       "placeholder_last": "أدخل لقبك",
       "date_of_birth": "تاريخ الميلاد",
       "placeholder_date_of_birth": "أدخل تاريخ ميلادك",
+      "place_of_birth": "مكان الميلاد",
+      "placeholder_place_of_birth": "أدخل مكان ميلادك",
+      "residence_place": "مكان الإقامة",
+      "placeholder_residence_place": "أدخل مكان إقامتك",
       "wilaya": "الولاية",
       "placeholder_wilaya": "أدخل ولايتك",
       "phone": "الهاتف",
@@ -148,9 +154,9 @@
     },
     "nationalCard": {
       "national_card_id": "رقم بطاقة التعريف الوطنية",
-      "placeholder_national_card_id": "أدخل رقم بطاقة التعريف الوطنية",
+      "placeholder_national_card_id": "أدخل رقم بطاقة التعريف الوطنية (10 أرقام)",
       "confirm_national_card_id": "تأكيد رقم بطاقة التعريف الوطنية",
-      "placeholder_confirm_national_card_id": "أكد رقم بطاقة التعريف الوطنية",
+      "placeholder_confirm_national_card_id": "أكد رقم بطاقة التعريف الوطنية (10 أرقام)",
       "submit": "إرسال"
     }
   },
@@ -200,7 +206,8 @@
       "Committee": "اللجان",
       "Admin": "المسؤولون",
       "Employee": "الموظفون",
-      "Application": "الطلبات"
+      "Application": "الطلبات",
+      "Social": "المجتمعات"
     },
     "content": {
       "admins": {
@@ -340,7 +347,12 @@
           "name": "الاسم",
           "date_of_birth": "تاريخ الميلاد",
           "national_id_number": "رقم التعريف الوطني",
-          "settings": "الإعدادات"
+          "settings": "الإعدادات",
+          "pending": "قيد الإنتظار",
+          "completed": "مكتمل",
+          "accepted": "مقبول",
+          "classed": "مصنف",
+          "denied": "مرفوض"
         },
         "view": {
           "title": "المتقدم",
@@ -376,8 +388,30 @@
           "chronic_illness_disability": "مرض مزمن أو إعاقة",
           "family_member_illness": "مرض أحد أفراد العائلة",
           "relationship": "العلاقة",
-          "type": "النوع"
+          "type": "النوع",
+          "status_changed": "تم تغيير الحالة بنجاح"
         }
+      },
+      "socials": {
+        "title": "المجتمعات",
+        "create": "إنشاء مجتمع",
+        "stat": {
+          "title": "المجتمعات"
+        },
+        "table": {
+          "name": "الاسم",
+          "max_application": "الحد الأقصى للطلبات",
+          "number_of_application": "عدد الطلبات",
+          "created_at": "التاريخ",
+          "updated_at": "التاريخ",
+          "settings": "الإعدادات"
+        },
+        "view": {
+          "title": "المجتمع",
+          "evaluate": "تقييم"
+        },
+        "previous": "السابق",
+        "next": "التالي"
       }
     }
   }

@@ -10,6 +10,8 @@ export default async function ApplicationPagination({ currentPage }: Application
     try {
         const response = await getApplications(currentPage);
 
+        
+
         if (!response || !response.applications.data || !response.applications.links) {
             return null;
         }
