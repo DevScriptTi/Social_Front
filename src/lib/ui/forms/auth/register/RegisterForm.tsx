@@ -69,7 +69,7 @@ export default function RegisterForm() {
     const t = useTranslations('auth.register');
 
     return (
-        <Form title="register now">
+        <Form title={t('title')}>
             <FormSection onSubmit={handleSubmit(onSubmit)}>
                 {isSubmitSuccessful && (
                     <div className="flex flex-col gap-2 py-4 items-center">

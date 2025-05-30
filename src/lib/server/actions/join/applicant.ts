@@ -3,7 +3,8 @@
 import { cookies } from "next/headers";
 import axios from "axios";
 import { revalidatePath } from "next/cache";
-import { ApplicantRequest, ApplicationResponse, HealthRequest, HousingRequest, ProfessionalRequest } from "../../types/join/applicationUpdate";
+import { ApplicantRequest, ApplicationResponse, FileUploadRequest, HealthRequest, HousingRequest, ProfessionalRequest } from "../../types/join/applicationUpdate";
+import { Step5FormData } from "@/lib/ui/forms/join/Step5Form";
 
 const axiosInstance = axios.create({
     baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
@@ -86,12 +87,38 @@ export async function health(data: HealthRequest): Promise<{ success: boolean }>
     }
 }
 
+export async function file(data: Step5FormData): Promise<{ success: boolean }> {
+    const cookieStore = await cookies();
+    const application_key = cookieStore.get('application_key');
+    
+    if (!application_key?.value) {
+      throw new Error('Application key not found');
+    }
+  
+   
+  
+    try {
+      await axiosInstance.post(
+        `/applications/${application_key.value}/files`,        
+      );
+      revalidatePath('/join/step5');
+      return { success: true };
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error('Error:', error.response?.data);
+        throw error; // Re-throw to handle in component
+      }
+      console.error('Unexpected error:', error);
+      throw error;
+    }
+}
+
 export async function getApplication(): Promise<ApplicationResponse | { success: false }> {
     const cookieStore = await cookies();
     const application_key = cookieStore.get('application_key');
     try {
         const response = await axiosInstance.get(`/applications/${application_key?.value}`);
-        
+
         return response.data;
     } catch (error) {
         console.error('Error:', error.response?.data);

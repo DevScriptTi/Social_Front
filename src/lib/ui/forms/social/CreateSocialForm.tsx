@@ -11,10 +11,8 @@ import { useEffect, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 const createSocialSchema = z.object({
-    name: z.string()
-        .min(1, "Name is required")
-        .regex(/^[A-Z][a-z]*$/, "Only letters allowed, first letter must be capital"),
-    max_application: z.number().min(1, "Max application is required")       
+    name: z.string().min(1, "Name is required"),
+    max_application: z.string().min(1, "Max application is required")       
 });
 
 type CreateSocialFormData = z.infer<typeof createSocialSchema>;
@@ -47,7 +45,10 @@ export default function CreateSocialForm() {
 
     const onSubmit = async (data: CreateSocialFormData) => {
         try {
-            await createSocial(data);
+            await createSocial({
+                name: data.name,
+                max_application: parseInt(data.max_application)
+            });
             reset(); // Reset form after successful submission
         } catch (error) {
             console.error('Error creating social:', error);
@@ -75,6 +76,7 @@ export default function CreateSocialForm() {
                 placeholder={t('placeholder_max_application')}
                 error={errors.max_application?.message}
                 register={register}
+                type="number"
             />
             <Button
                 type="submit"

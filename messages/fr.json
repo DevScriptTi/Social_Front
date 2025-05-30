@@ -3,6 +3,48 @@
     "title": "Social Housing Support",
     "description": "Logment Social simplifie les demandes de logement social en Algérie. Accédez à des solutions de logement abordables avec un suivi transparent et des mises à jour en temps réel. Rejoignez des milliers d’Algériens qui ont trouvé leur maison de rêve grâce à notre plateforme.",
     "join": "Rejoignez-nous",
+    "conditions": {
+      "title": "Conditions d'éligibilité",
+      "modal": {
+        "eligibility_requirements": {
+          "monthly_income": "Le revenu familial mensuel ne doit pas dépasser 24 000 DZD.",
+          "property_ownership": "Le demandeur ou son conjoint ne doit pas être propriétaire d'un logement ou d'un terrain constructible.",
+          "previous_benefits": {
+            "description": "Le demandeur ou son conjoint ne doit pas avoir bénéficié précédemment de :",
+            "items": [
+              "Un logement public locatif",
+              "Un logement social participatif",
+              "Un logement rural",
+              "Un logement dans le cadre de la vente avec location",
+              "Une aide gouvernementale pour l'achat, la construction ou la rénovation d'un logement"
+            ]
+          },
+          "residency": "Le demandeur doit résider dans la commune où la demande est déposée depuis au moins 5 ans.",
+          "age": "Le demandeur doit être âgé d'au moins 21 ans au moment du dépôt de la demande."
+        },
+        "required_documents": {
+          "personal_documents": [
+            "Acte de naissance du demandeur (n°12)",
+            "Acte de naissance du conjoint (n°12)",
+            "Certificat de famille (ou certificat individuel pour les célibataires)",
+            "Carte nationale d'identité du demandeur",
+            "Carte nationale d'identité du conjoint"
+          ],
+          "administrative_documents": [
+            "Certificat de résidence du demandeur",
+            "Certificat de travail ou de non-emploi du demandeur",
+            "Certificat de travail ou de non-emploi du conjoint",
+            "Bulletin de salaire ou attestation de revenus du conjoint",
+            "Bulletin de salaire ou attestation de revenus du demandeur"
+          ],
+          "other_documents": [
+            "Attestation de non-propriété immobilière pour le demandeur et le conjoint",
+            "Certificat médical (pour les personnes handicapées ou atteintes de maladies chroniques)",
+            "Acte de décès ou jugement de divorce (pour les veuves ou divorcées)"
+          ]
+        }
+      }
+    },
     "UpBar": {
       "login": "Connexion",
       "register": "Inscription",
@@ -25,11 +67,13 @@
   },
   "join": {
     "joinUpBar": {
+      "step0": "Carte Nationale",
       "step1": "État Civil",
       "step2": "Statut Professionnel",
       "step3": "Propriété",
       "step4": "État de Santé",
-      "step5": "Téléversement de Documents"
+      "step5": "Téléversement de Documents",
+      "step6": "Confirmation"
     },
     "step1": {
       "title": "État Civil",
@@ -151,6 +195,13 @@
       "save": "Enregistrer",
       "next": "Suivant",
       "success": "Documents téléversés avec succès"
+    },
+    "step6": {
+      "title": "Confirmation",
+      "pending": "Votre demande est en attente, veuillez compléter les étapes précédentes pour être approuvée",
+      "on_review": "Votre demande est en cours de révision, veuillez patienter pour l'approbation du social",
+      "not_classed": "Votre demande est acceptée, veuillez patienter pour l'approbation du social",
+      "accepted": "Vous avez obtenu l'approbation du social, félicitations !!"
     },
     "nationalCard": {
       "national_card_id": "Carte Nationale",
@@ -398,6 +449,18 @@
           "created_at": "Created At",
           "updated_at": "Updated At",
           "settings": "Settings"
+        },
+        "createSocial": {
+          "title": "Créer un Social",
+          "name": "Nom",
+          "placeholder_name": "Entrez le nom du social",
+          "max_application": "Max Application",
+          "placeholder_max_application": "Entrez le nombre maximum d'applications",
+          "submit": "Créer le social",
+          "submitting": "Envoi en cours...",
+          "success": "Social créé avec succès !",
+          "error": "Erreur lors de la création du social !",
+          "create": "Créer un Social"
         },
         "view": {
           "title": "Social",

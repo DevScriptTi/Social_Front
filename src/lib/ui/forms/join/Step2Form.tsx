@@ -13,11 +13,35 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 const nationalCardSchema = z.object({
     is_employed: z.enum(["yes", "no"]),
-    work_nature: z.enum(["public sector", "private sector", "unstable"]),
-    current_job: z.string(),
-    monthly_income: z.string().refine((val) => !isNaN(Number(val)), {
+    work_nature: z.enum(["public sector", "private sector", "unstable"]).optional(),
+    current_job: z.string().optional(),
+    monthly_income: z.string().refine((val) => !val || !isNaN(Number(val)), {
         message: "Monthly income must be a valid number",
-    }),
+    }).optional(),
+}).superRefine((data, ctx) => {
+    if (data.is_employed === "yes") {
+        if (!data.work_nature) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: "Work nature is required when employed",
+                path: ["work_nature"],
+            });
+        }
+        if (!data.current_job) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: "Current job is required when employed",
+                path: ["current_job"],
+            });
+        }
+        if (!data.monthly_income) {
+            ctx.addIssue({
+                code: z.ZodIssueCode.custom,
+                message: "Monthly income is required when employed",
+                path: ["monthly_income"],
+            });
+        }
+    }
 });
 
 type NationalCardFormData = z.infer<typeof nationalCardSchema>;

@@ -11,19 +11,35 @@ import { ApplicationResponse } from "@/lib/server/types/join/applicationUpdate";
 import { health } from "@/lib/server/actions/join/applicant";
 import { CheckCircle, Loader2 } from "lucide-react";
 import Link from "next/link";
-import { useTranslations } from "next-intl";    
+import { useTranslations } from "next-intl";
 const step4Schema = z.object({
     chronic_illness_disability: z.enum(['yes', 'no'], { required_error: 'This field is required' }),
     type: z.string().optional(),
     family_member_illness: z.enum(['yes', 'no'], { required_error: 'This field is required' }),
     relationship: z.string().optional(),
+}).superRefine((data, ctx) => {
+    if (data.chronic_illness_disability === 'yes' && !data.type) {
+        ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: "Type is required when chronic illness/disability is 'yes'",
+            path: ['type'],
+        });
+    }
+
+    if (data.family_member_illness === 'yes' && !data.relationship) {
+        ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: "Relationship is required when family member illness is 'yes'",
+            path: ['relationship'],
+        });
+    }
 });
 
 type Step4FormData = z.infer<typeof step4Schema>;
 
 export default function Step4Form({ applicationResponse }: { applicationResponse: ApplicationResponse | { success: false } }) {
-    const application = applicationResponse.success === false ? null : applicationResponse.application; 
-    const { register, handleSubmit, formState: { errors, isSubmitting, isSubmitted } } = useForm<Step4FormData>({
+    const application = applicationResponse.success === false ? null : applicationResponse.application;
+    const { register, handleSubmit, watch,formState: { errors, isSubmitting, isSubmitted } } = useForm<Step4FormData>({
         resolver: zodResolver(step4Schema),
         defaultValues: application ? {
             chronic_illness_disability: application.health.chronic_illness_disability,
@@ -32,6 +48,8 @@ export default function Step4Form({ applicationResponse }: { applicationResponse
             relationship: application.health.relationship,
         } : {}
     });
+    const chronicIllness = watch("chronic_illness_disability");
+    const familyIllness = watch("family_member_illness");
     const onSubmit = async (data: Step4FormData) => {
         await health({
             chronic_illness_disability: data.chronic_illness_disability,
@@ -44,16 +62,7 @@ export default function Step4Form({ applicationResponse }: { applicationResponse
     const t = useTranslations('join.step4');
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6 w-full">
-            <div>
-                {
-                    isSubmitted &&
-                    <div className="flex items-center justify-center gap-2 my-2 text-green-700 dark:text-green-400">
-                        <CheckCircle size={24} />
-                        <p>{t('success')}</p>
-                    </div>
-                }
-            </div>
-            <div className="flex gap-4">    
+            <div className="flex gap-4">
                 <SimpleSelect
                     error={errors?.chronic_illness_disability?.message}
                     title={t('chronic_illness_disability')}
@@ -74,18 +83,9 @@ export default function Step4Form({ applicationResponse }: { applicationResponse
                     <option value="yes">{t('yes')}</option>
                     <option value="no">{t('no')}</option>
                 </SimpleSelect>
-
             </div>
-            <div className="flex gap-4">
 
-                <Input
-                    error={errors?.relationship?.message}
-                    title={t('relationship')}
-                    label="relationship"
-                    register={register}
-                    placeholder={t('placeholder_relationship')}
-                    type="text"
-                />
+            {chronicIllness === 'yes' && (
                 <Input
                     error={errors?.type?.message}
                     title={t('type')}
@@ -94,7 +94,18 @@ export default function Step4Form({ applicationResponse }: { applicationResponse
                     placeholder={t('placeholder_type')}
                     type="text"
                 />
-            </div>
+            )}
+
+            {familyIllness === 'yes' && (
+                <Input
+                    error={errors?.relationship?.message}
+                    title={t('relationship')}
+                    label="relationship"
+                    register={register}
+                    placeholder={t('placeholder_relationship')}
+                    type="text"
+                />
+            )}
             <div className=" flex gap-3">
                 {isSubmitting ?
                     <Button icon={<Loader2 size={24} />} type="submit" mode="filled">{t('save')}</Button>

@@ -192,5 +192,29 @@ interface HealthRequest {
   relationship: string | null;
 }
 
-export type { ApplicationResponse, Application, Applicant, Wife, Committee, Daira, Wilaya, Housing, Files, Health, Professional, QRCode, ApplicantRequest, ProfessionalRequest, HousingRequest, HealthRequest };
+type ValidatedFile = {
+  originalname: string;
+  mimetype: 'application/pdf' | 'image/jpeg' | 'image/jpg' | 'image/png';
+  size: number; // in bytes (max 2048 * 1024 = 2MB)
+  buffer: Buffer;
+  // Add other file properties you might need
+};
+
+type FileUploadRequest = {
+  birth_certificate?: ValidatedFile;
+  spouse_birth_certificate?: ValidatedFile;
+  family_individual_certificate?: ValidatedFile;
+  applicant_national_id?: ValidatedFile;
+  spouse_national_id?: ValidatedFile;
+  residence_certificate?: ValidatedFile;
+  employment_unemployment_certificate?: ValidatedFile;
+  spouse_employment_certificate?: ValidatedFile;
+  spouse_salary_certificate?: ValidatedFile;
+  applicant_salary_certificate?: ValidatedFile;
+  non_real_estate_ownership_certificate?: ValidatedFile;
+  medical_certificate?: ValidatedFile;
+  death_divorce_certificate?: ValidatedFile;
+};
+
+export type { ApplicationResponse, FileUploadRequest, Application, Applicant, Wife, Committee, Daira, Wilaya, Housing, Files, Health, Professional, QRCode, ApplicantRequest, ProfessionalRequest, HousingRequest, HealthRequest };
 

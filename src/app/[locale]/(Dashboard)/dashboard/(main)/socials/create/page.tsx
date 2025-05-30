@@ -1,15 +1,15 @@
 import DashSection from "@/lib/ui/components/global/Section/Section";
 import { DashContenTitle } from "@/lib/ui/components/local/Dashboard/DashCrudContent";
-import CreateEmployeeForm from "@/lib/ui/forms/employee/CreateEmployeeForm";
+import CreateSocialForm from "@/lib/ui/forms/social/CreateSocialForm";
 import { getTranslations } from "next-intl/server";
 
-export default async function CreateEmployeePage() {
-    const t = await getTranslations('Dashboard.content.employees.createEmployee');
+export default async function CreateSocialPage() {
+    const t = await getTranslations('Dashboard.content.socials.createSocial');
     return (
         <DashSection>
             <DashContenTitle>{t('title')}</DashContenTitle>
             <div className="mb-5"></div>
-            <CreateEmployeeForm />
+            <CreateSocialForm />
         </DashSection>
     )
 } 

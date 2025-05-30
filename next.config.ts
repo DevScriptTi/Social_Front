@@ -1,18 +1,23 @@
-import {NextConfig} from 'next';
-import createNextIntlPlugin from 'next-intl/plugin';
- 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
     images: {
-        remotePatterns: [
-            {
-                protocol: 'http',
-                hostname: 'localhost',
-                port: '8000',
-                pathname: '/qrcode/**',
-            },
-        ],
+      remotePatterns: [
+        {
+          protocol: 'http',
+          hostname: 'localhost',
+          port: '8000',
+          pathname: '/files/**',
+        },
+        {
+          protocol: 'http',
+          hostname: '127.0.0.1',
+          port: '8000',
+          pathname: '/qrcode/**',
+        },
+      ],
     },
-};
- 
-const withNextIntl = createNextIntlPlugin();
-export default withNextIntl(nextConfig);
+  };
+  
+  const withNextIntl = require('next-intl/plugin')();
+  
+  module.exports = withNextIntl(nextConfig);

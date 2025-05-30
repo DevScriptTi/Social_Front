@@ -4,8 +4,8 @@ import "./globals.css";
 
 
 export const metadata: Metadata = {
-  title: "Dev Script",
-  description: "Generated Dev Script",
+  title: "Social Housing Support",
+  description: "Social Housing Support",
 };
 
 export default function RootLayout({

@@ -10,7 +10,6 @@ export default async function applicationView({ params }: { params: { applicatio
     const t = await getTranslations('Dashboard.content.applications.view');
     const t2 = await getTranslations('Dashboard.content.applications.table');
     const applicationData: ApplicationResponse | { success: false } = await getApplicationView(application) as ApplicationResponse
-    console.log(applicationData.application.status);
     return (
         <DashContent>
             <h1 className="text-headline-large font-bold text-primary-container  dark:text-dark-primary-container">{t('title')} {applicationData?.application?.key} </h1>
@@ -38,7 +37,8 @@ export default async function applicationView({ params }: { params: { applicatio
             <ApplicantInfo applicationData={applicationData} />
             <Line />
             <HousingProfessionalProperty applicationData={applicationData} />
-
+            <Line />
+            <File applicationData={applicationData} />
         </DashContent>
     )
 }
@@ -185,5 +185,39 @@ function PhotoAndQrCode({ applicationData }: { applicationData: ApplicationRespo
 function Line() {
     return (
         <div className="h-0.5 my-6 px-8 w-full bg-primary-container  dark:bg-dark-primary-container" />
+    )
+}
+
+function File({ applicationData }: { applicationData: ApplicationResponse }) {
+    return (
+        <div className="flex flex-col gap-4">
+            <FileRow url={applicationData?.application?.files?.applicant_national_id ?? ""} />
+            <Line />
+            <FileRow url={applicationData?.application?.files?.applicant_salary_certificate ?? ""} />
+            <Line />
+            <FileRow url={applicationData?.application?.files?.birth_certificate ?? ""} />
+            <Line />
+            <FileRow url={applicationData?.application?.files?.death_divorce_certificate ?? ""} />
+            <Line />
+            <FileRow url={applicationData?.application?.files?.employment_unemployment_certificate ?? ""} />
+            <Line />
+            <FileRow url={applicationData?.application?.files?.family_individual_certificate ?? ""} />
+            <Line />
+            <FileRow url={applicationData?.application?.files?.medical_certificate ?? ""} />
+            <Line />
+            <FileRow url={applicationData?.application?.files?.non_real_estate_ownership_certificate ?? ""} />
+            <Line />
+            <FileRow url={applicationData?.application?.files?.residence_certificate ?? ""} />
+            <Line />
+            <FileRow url={applicationData?.application?.files?.spouse_national_id ?? ""} />
+            <Line />
+            <FileRow url={applicationData?.application?.files?.spouse_salary_certificate ?? ""} />
+        </div>
+    )
+}
+
+function FileRow({ url }: { url: string }) {
+    return (
+        <Image src={`http://localhost:8000/files/${url}`} alt="File" width={800} height={800} />
     )
 }

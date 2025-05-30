@@ -3,6 +3,48 @@
     "title": "Social Housing Support",
     "description": "Logment Social simplifies social housing applications in Algeria. Access affordable housing solutions with transparent tracking and real-time updates. Join thousands of Algerians who have found their dream homes through our platform.",
     "join": "Join us",
+    "conditions":{
+      "title": "Eligibility Requirements",
+      "modal": {
+        "eligibility_requirements": {
+          "monthly_income": "The applicant's family monthly income must not exceed 24,000 DZD.",
+          "property_ownership": "The applicant or their spouse must not own any residential property or buildable land.",
+          "previous_benefits": {
+            "description": "The applicant or their spouse must not have previously benefited from:",
+            "items": [
+              "Public rental housing",
+              "Contribution-based social housing",
+              "Rural housing",
+              "Rent-to-own housing",
+              "Government assistance for purchasing, building, or renovating housing"
+            ]
+          },
+          "residency": "The applicant must have resided in the municipality where the application is submitted for at least 5 years.",
+          "age": "The applicant must be at least 21 years old when submitting the application."
+        },
+        "required_documents": {
+          "personal_documents": [
+            "Birth certificate of the applicant (No. 12)",
+            "Birth certificate of spouse (No. 12)",
+            "Family certificate (or individual certificate for singles)",
+            "National ID card of the applicant",
+            "National ID card of the spouse"
+          ],
+          "administrative_documents": [
+            "Residence certificate of the applicant",
+            "Employment or unemployment certificate of the applicant",
+            "Employment or unemployment certificate of the spouse",
+            "Salary slip or income certificate of the spouse",
+            "Salary slip or income certificate of the applicant"
+          ],
+          "other_documents": [
+            "Certificate of non-property ownership for the applicant and spouse",
+            "Medical certificate (for people with special needs or chronic illnesses)",
+            "Death certificate or divorce certificate (for widows or divorced women)"
+          ]
+        }
+      }
+    },
     "UpBar": {
       "login": "Login",
       "register": "Register",
@@ -25,11 +67,13 @@
   },
   "join": {
     "joinUpBar": {
+      "step0": "National Card",
       "step1": "Civil Status",
       "step2": "Professional Status",
       "step3": "Property",
       "step4": "Medical Condition",
-      "step5": "Uploading Documents"
+      "step5": "Uploading Documents",
+      "step6": "Confirmation"
     },
     "step1": {
       "title": "Civil Status",
@@ -151,6 +195,13 @@
       "save": "Save",
       "next": "Next",
       "success": "Documents uploaded successfully"
+    },
+    "step6": {
+      "title": "Confirmation",
+      "pending": "Your application is pending you have to complete the previous steps to be approved",
+      "on_review": "Your application is in review you have to wait for the approval from the social",
+      "not_classed": "Your application is accepted you have to wait for the approval from the social",
+      "accepted": "you get the approval from the social congratulations !!"
     },
     "nationalCard": {
       "national_card_id": "National Card ID",
@@ -398,6 +449,18 @@
           "created_at": "Created At",
           "updated_at": "Updated At",
           "settings": "Settings"
+        },
+        "createSocial": {
+          "title": "Create Social",
+          "name": "Name",
+          "placeholder_name": "Enter Your Name",
+          "max_application": "Max Application",
+          "placeholder_max_application": "Enter Your Max Application",
+          "submit": "Create Social",
+          "submitting": "Submitting...",
+          "success": "Social created successfully!",
+          "error": "Social creation failed!",
+          "create": "Create Social"
         },
         "view": {
           "title": "Social",

@@ -1,5 +1,5 @@
 'use client';
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { FileInput } from "../../components/global/Inputs/InputFile";
 import Button from "../../components/global/Buttons/Button";
 
@@ -7,6 +7,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { file } from "@/lib/server/actions/join/applicant";
 const step5Schema = z.object({
     birth_certificate: z.any(),
     spouse_birth_certificate: z.any(),
@@ -22,15 +23,20 @@ const step5Schema = z.object({
     medical_certificate: z.any(),
     death_divorce_certificate: z.any(),
 });
-type Step5FormData = z.infer<typeof step5Schema>;
+export type Step5FormData = z.infer<typeof step5Schema>;
 
 export default function Step5Form() {
     const router = useRouter();
     const { register, handleSubmit, formState: { errors } } = useForm<Step5FormData>({
         resolver: zodResolver(step5Schema)
     });
-    const onSubmit = () => {
-        router.push('/join/step1');
+    const onSubmit:SubmitHandler<Step5FormData>  = async (data) => {
+       
+        try {
+            await file(data);
+        } catch (error) {
+            console.error('Error submitting applicant:', error);
+        }
     };
     const t = useTranslations('join.step5');
     return (

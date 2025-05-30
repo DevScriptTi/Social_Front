@@ -2,6 +2,7 @@
 
 import { Languages } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
 
 export default function Lang() {
     return (
@@ -24,12 +25,27 @@ export default function Lang() {
     )
 }
 
-
-function Link({ lang , title}: { lang: string , title: string }) {
+function Link({ lang, title }: { lang: string; title: string }) {
     const t = useTranslations();
-    const locale = useLocale()
-
+    const locale = useLocale();
+    const pathname = usePathname();
+    
+    // Remove the current locale prefix and any leading/trailing slashes
+    const pathWithoutLocale = pathname.replace(new RegExp(`^/${locale}(/|$)`), '/');
+    
+    // Construct the new href with the target language
+    const href = `/${lang}${pathWithoutLocale}`;
+  
     return (
-        <a className={`px-2 py-1 flex items-center justify-center  ${locale !== lang ? 'text-primary dark:text-dark-primary' : 'bg-primary dark:bg-dark-primary text-on-primary dark:text-on-dark-primary'}`} href={`/${lang}`}>{t(title)}</a>
-    )
-}
+      <a 
+        className={`px-2 py-1 flex items-center justify-center ${
+          locale !== lang 
+            ? 'text-primary dark:text-dark-primary' 
+            : 'bg-primary dark:bg-dark-primary text-on-primary dark:text-on-dark-primary'
+        }`} 
+        href={href}
+      >
+        {t(title)}
+      </a>
+    );
+  }
